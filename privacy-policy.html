@@ -1,1144 +1,566 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Privacy Policy - Auto Everything Flow</title>
-
     <style>
-
         * {
-
             margin: 0;
-
             padding: 0;
-
             box-sizing: border-box;
-
         }
-
-
 
         body {
-
             background: #0a0a10;
-
             color: #e2e8f0;
-
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-
             line-height: 1.6;
-
             min-height: 100vh;
-
         }
-
-
 
         .container {
-
             max-width: 900px;
-
             margin: 0 auto;
-
             padding: 40px 20px;
-
         }
-
-
 
         /* Header */
-
         .header {
-
             display: flex;
-
             justify-content: space-between;
-
             align-items: center;
-
             margin-bottom: 40px;
-
             padding-bottom: 20px;
-
             border-bottom: 1px solid rgba(158, 89, 226, 0.2);
-
         }
-
-
 
         .back-link {
-
             color: #a78bfa;
-
             text-decoration: none;
-
             font-size: 14px;
-
             display: flex;
-
             align-items: center;
-
             gap: 5px;
-
             transition: color 0.3s;
-
         }
-
-
 
         .back-link:hover {
-
             color: #7c3aed;
-
         }
-
-
 
         .logo-section {
-
             display: flex;
-
             align-items: center;
-
             gap: 15px;
-
         }
-
-
 
         .logo {
-
             width: 50px;
-
             height: 50px;
-
-            background: linear-gradient(135deg, #7c3aed, #a78bfa);
-
             border-radius: 12px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            font-size: 28px;
-
-            font-weight: bold;
-
-            color: white;
-
+            object-fit: contain;
         }
-
-
 
         .logo-text h1 {
-
             font-size: 24px;
-
             font-weight: 700;
-
             color: #e2e8f0;
-
         }
-
-
 
         .logo-text p {
-
             font-size: 12px;
-
             color: #a78bfa;
-
             margin-top: 2px;
-
         }
-
-
 
         .lang-switcher {
-
             display: flex;
-
             gap: 10px;
-
         }
-
-
 
         .lang-btn {
-
             padding: 8px 16px;
-
             border: 2px solid #7c3aed;
-
             background: transparent;
-
             color: #a78bfa;
-
             border-radius: 6px;
-
             cursor: pointer;
-
             font-size: 14px;
-
             font-weight: 500;
-
             transition: all 0.3s;
-
         }
-
-
 
         .lang-btn.active {
-
             background: #7c3aed;
-
             color: white;
-
         }
-
-
 
         .lang-btn:hover:not(.active) {
-
             color: #7c3aed;
-
         }
-
-
 
         /* Content */
-
         .content {
-
             margin-bottom: 60px;
-
         }
-
-
 
         .section {
-
             margin-bottom: 40px;
-
         }
-
-
 
         .section h2 {
-
             font-size: 22px;
-
             font-weight: 700;
-
             color: #a78bfa;
-
             margin-bottom: 15px;
-
             padding-bottom: 10px;
-
             border-bottom: 2px solid rgba(158, 89, 226, 0.2);
-
         }
-
-
 
         .section h3 {
-
             font-size: 16px;
-
             font-weight: 600;
-
             color: #a78bfa;
-
             margin-top: 20px;
-
             margin-bottom: 10px;
-
         }
-
-
 
         .section p {
-
             margin-bottom: 12px;
-
             color: #cbd5e1;
-
             font-size: 15px;
-
         }
-
-
 
         .section ul {
-
             list-style: none;
-
             margin: 15px 0;
-
             padding-left: 20px;
-
         }
-
-
 
         .section li {
-
             margin-bottom: 10px;
-
             padding-left: 20px;
-
             position: relative;
-
             color: #cbd5e1;
-
             font-size: 15px;
-
         }
-
-
 
         .section li:before {
-
             content: "▸";
-
             color: #7c3aed;
-
             position: absolute;
-
             left: 0;
-
             font-weight: bold;
-
         }
-
-
 
         .callout {
-
             background: rgba(158, 89, 226, 0.1);
-
             border-left: 4px solid #7c3aed;
-
             padding: 15px 20px;
-
             margin: 20px 0;
-
             border-radius: 4px;
-
             color: #cbd5e1;
-
         }
-
-
 
         .callout strong {
-
             color: #a78bfa;
-
         }
-
-
 
         a {
-
             color: #a78bfa;
-
             text-decoration: none;
-
             transition: color 0.3s;
-
         }
-
-
 
         a:hover {
-
             color: #7c3aed;
-
         }
-
-
 
         .hidden {
-
             display: none;
-
         }
-
-
 
         /* Footer */
-
         .footer {
-
             text-align: center;
-
             padding-top: 40px;
-
             border-top: 1px solid rgba(158, 89, 226, 0.2);
-
             color: #64748b;
-
             font-size: 14px;
-
         }
-
-
 
         .update-date {
-
             color: #94a3b8;
-
             font-size: 13px;
-
             margin-top: 10px;
-
             font-style: italic;
-
         }
-
-
 
         @media (max-width: 600px) {
-
             .header {
-
                 flex-direction: column;
-
                 align-items: flex-start;
-
                 gap: 20px;
-
             }
-
-
 
             .logo-text h1 {
-
                 font-size: 20px;
-
             }
-
-
 
             .section h2 {
-
                 font-size: 18px;
-
             }
-
-
 
             .container {
-
                 padding: 20px 15px;
-
             }
-
         }
-
     </style>
-
 </head>
-
 <body>
-
     <div class="container">
-
         <!-- Header -->
-
         <div class="header">
-
             <a href="index.html" class="back-link">← Back to Home</a>
-
             <div class="logo-section">
-
                 <img class="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAVtUlEQVR4nO1dW5AU13n+/tPdc9uZXQFa9gpagYQAIYRjI2MBwkISkWVZ1sWq2LFTqeQpjl0pV+UlTxqtkoc8JC+52eVKuVJ22RVZcWwTKyIqiauCkQDJXIS8G4ub2AsLgmXnPt3n/Hk43TM9y66YWS47vdtf1exsz/R1/u/8t/OfcwjXB0qn0/TSSy8pZvZ/bm7Y8HxrX19frFjMJyMRiktJQgjB050oRC2IBBeLqhiNiuzp06eKBw/+YgKAXf2e8MILL4j+/n4GMOPflWZ6YDqdFv39/crb3rLlyds7Ovp6mNGbzea7M5nxrlxuoqNUKiUdp5xQSpkAMcAzvub8gP6NiEhaVjRvWdFsMpkaSybbRpLJ1iGAh86dOz389tv/dQGAAq6WRUNXm8ExwrswgPiXv/ytuywL946MDK8ZGxu+98qVS3eXSoUOxym3KcXWTG4qRC2EIEcIMxOPx0fb2hb9rr296/2Ojp7jliWO79r18ocXLlzI6j3TAmiMCA0RgJmJiBhA7JlnvrVaqfL6Dz8cfHB09KP1+Xz2TmaOERGEEPrkel9XPXGjl5vHqPmtiFlrTaUYzApEVI7FWk51dPQcXrbsnl+3tNz29k9/+vfvA8i7MvJOck3UKxHyTvjoo1+7O5VauGlw8NjWc+dOPlQuF5cKYYBIgAieL0ANnDtEfWBo2wBmCGYFpRQsKzLU3d331sqVa3cWixNv7djx4xPu/hWZfRLqEZJ3otizz35z09jY6LYPPnjvC7lcdo1hmBCCmLXUxYwfLcRMoDQZWDiOg3g8MbBy5brXuruXvv6zn/3TXgC5ekzCtQggAKgVKz59+/33b3rs2LF3njl79ndPEIkWIYRyHbqwpc8uWFsJJaSUxZ6eO3esW/fgz0+c2P/6iRMHR69Fgk8SngCg1q/f0tnTs+qZgwf3fu3SpbHNlmWBmRXCFt9sUEQkHMdGa+vCdx54YOuPR0fP/+c77/z83CeRYDoCEAD+7Ge3dtxxx9ov7d69/c+z2cynTNNUrkMStvrmBBMRO44U8XjixMMPP/nP4+MXf/HGG/8+jGl8gqlaMRER9/ZuWNjVteLZ3bu3fyuXy3zKNE3JzAKh8JsZxMzCNA1ZLOZX79q1/duJROr5NWs+24FpwrDJBCBmBjNHN2x4YNvBg3u+ns1m1hmGqZjZuCWPEOK6wcyGYRiyUCiuevvtXX+0YsX6LwBdCV+EVkENAdLpNBERP/vsNx88fvzQc5cuXdjoa/khAgRmNkzTkJnM+KePHDnw3NNPP7eFiJBOp2sI4N8QANQjj/zhslKp9Gfvvrvn26ZpxaZiTYjAwPUJbHnffRu+l0ot+O4bb/zoAx29EQM+DeDG8tG2ttse+u1v331KCCPufhYKP7ggZoYQpjU4eOSpRCK+paurK+H22xHgEiCdTgsi4uee+4t7BgePPZbPZ+8RwlAAiWpSL3wF9CWEEKpUKt4xMHBs26ZNX11DROyZAv2HCMuXL4+uWrX1j/ft++8XpZRdCJP3cwkMgIjExxs3PvbXQ0Pv/uvRo0dzAEik02nBzFi9+pHlp08Pbi6Xy11EpBAKfy6BiEg5jr3o5MmBh+6+e8sKQDv94sUXX2QAZFmRNaOjZ9cLITCpuCPEHID2BQQuXBj+tJT2WgBGf38/CyLi9eufXjg6+tH9+XxuGZEAwjTvXIQQQqBUKiwZGTm7bvPmry8GoOP75cuX9oyNDa9hZosIM6osCdH8YGbFDHHhwui9XV2dvYDb0otFuXRi4vJdbvfi7N5liJsKIQQmJi4vKxYLdwCaAFaxmO8uFvOdbiVP6PzNXRARoVQqdeTzV3p6e3vjYsOG51OZzHi3lE6rt9Os3mKImwkiIiglWzKZ8Z71659MidWr+2L5fKadmU23hi/E3IZiZsrnM7fH47GkyGQyKdu2k67pDwkwT1AqlVOFAqWE45ixcrnUMts3FOLWwO3fgW2XUslk3BKmaRCzNN0vZ/fuQtwyMLOplEGmtz2rd3OzcCPd2Tn3C2l/z7zWboHAtCUO031SH2pkTtN8E3BiBJcAfoEQuZt09XeTDmlEXtPJHCCAWX/kBU4BJUIwCUAA6T8ACOT1bFeIALgfTnXozMD6j35jfS1msEcGcncKGBGCRQCqlDi4Q9Fcobv/X00K96Drghsfs2+bGQwGK4YuolXutn5vdhL424bp/3CaRtM8IECQAJhBUDCFCRIGBAmXFKRJgakfplEToFErUGYGWIGZoUhBKQklASklIDQJuckZMCUBmh4E3dKFQNuixWhb0I5oJAo9PtEECQJB1JiDKU7RgGimcvTY1QS61SulIKUD2y6jUMzi0ugQSsWC3jMgIXUwCODafGEYMKTElu+8gGVbH4edLYMM09vllsCrk/MnTlkxyCT86jtfx8lD+0GWBVay6U0BUCGAN+CneW0AkYAgA/FoFLFkKygaAdkCEAZwi5Vu7bW0M2hYAi0tbTBNE4oECKqJ5e/J2Q6ABqh4/AQSApFIDAYMkMMgqdAM3VfMDBKEiBWBISwwsWuCmt8hbH4CAK5JJwhhQBgmDCIIbfFBTaC19OQIBEMY7uwotYaimREAAmjT5Hn4QhgQEBAMCEaTaAD3XoQbjbAMiPibnQBe4/bF+0IQyP3Bm4kABgNUmQBt9rVSvWhuAsCVPbQfoBM/AgLNRwDBXo7ASxQFA01PgArIo4G2t81JAAXlZgWDggAQgCoaVXPANQGqcQLo5EzVM79hRVDMgCBIx4aUEiyC4gEEggDAZJuqtUA1e1EXGCDLhDCrZqXBy37i12YEKNslOI4Nsix3Urd6b2720OQEmCwB7QzOyAcQhPJHp5EZPYeSbUNKB4oVdFqX/b09NfCrcwJ8qWAtYZ0OlrCdIsaGTuteQRUcM9C8BLiq9VWbrSf8egnASsGMWPjo8H4cf/NXyJTyKBTycJwSpHKglKp08Pjz/V4XcOWv5+Axa1uvpO4LcMoolYqAYYIMwz3fjfkZbjaalwCTUNO344Zdsl4CMGAAyJYKuFIqoMgKJVKwSUGygmLp68r1NIK+EPuJ4Hn6UGDlkoBZp36jcShpa+EHCIEhgB+NmgBmfYy0yygW8ygTo1wuuRpAQilHq223b78qaFT6/iuEqIR5bv8/s++44FUHBZIAjTqBDK0xlFKwpQ2HAKkc3fqVfmkCKC3DitC9YhAfGXwEwCThB6QHuAaBJIDX8qlODQBvP3aFDPgErLyt6ufTCb/iD/hMRZCa+xRwCaB/hOZ9mNp7I9cHMBrxAbhaR1gNA/0H62uQjwa1162+k//7SgQxeb9mhnePVvA0AMM1ATPQAAYJmMIEE3SnkjD0zBmkizprNIC7uAmRLyqoiF2vmUEuXYLQ7TsdAkcAoCr8RpxAQwGmYSEajQNuGEfQNYZKSbCSFYeuVv17Nr+a62dWrgOo3NIwgpIyANWAV6NCgE/Ihcw6aJKW9UxA3QRwj4lZEcTMKKRdhKMYSjGgGKS4RpP7wn9482R6oaFHEsUMKR2d/lUKhmlB+R3BJv0tgVo5B1IDEBr0AUBgh9F752qoTWXkiwXYTsnNBvpCP/hbAftPUEkEMaoaQCeBbFw4/xEGj72jK4G88zQx5gQB/K9r70+ArdC1ej1616z3JxWvq+ueFRBLAINHjuLv/vJpsAQkO03d+icjkAQQjUYBcPP4tgOJGxevs1IgtgDHQTzeAieXhSKhw82AsCBwBPDseSN5gGqdjjdo5AbdC+nIwhImLCsKEnmQ1w0QkB7hwBEAcMPAGdQD3Ggw6/sg6KXyBLm5yYAIHwgoARo1ATcLDDcaAVWE3wxVyo0gkAQgNJgKvlnw5SMC0uCvQjAJwNWOoNmc05ahu5m1xvf6FIJFheARgGoTQbO5HjlX/BAFJZVbYYTm7laZhOARALX1AI0QoCbNeyNuRClASihHVwV56eEgIZAE8A8MaYQAhmHCdJ94pnMhVJfZ0PJPJICIGUGhkNMagINlBgJHAEat8OsjAMMwDJz58D2cPPU+iqUCbLusJ3eoFHPU6u3aGUFQ+a46M4iClDakcjA8fAZlR5eDVcvJgoHAEQCorQiqxwlkZlgG4eSHx7B77y+RLxVQKOR0SZjjVGsCJxOBq0KvdgSpSl+AIx04dhlSSZhW1CXGzXnmm4XgEqABDaCUdhpLpRIKpRIcxZBgSNbvqtK16+8OrgqzUhPoLwUDABIwrSgEKygpA6X6PQSTAI2aANbhmuOUUChlIZVCqVTQGkA6YOk3Bf6eQWgykMcJrvRNM1frBaplYzftkW8aAkmAhn0Adz+lFGy7DKkUHEeP4lHSLQZxy8L9GsA7Vr/5bfukbt8ACt5DIAng1QM0SgAo6Tpuui9fScetBlKTKnunErZve4p/gwofAXjSezOBa14N9wZ6+zFDsdQ2X0kw+0rBlFsY6xKg1pmbW0LXD6EQjDmCpoCvVK8ur7s6bN8dzOHVAEpVFf6kASBzQ9DXRiAJAADKrxSuBR9hqoM5fIM/apg0f4QPBJUA/hZdhwpgn22vHf9Xjfu9iH8+CR8IFAGquVue9LoWavf1UrWTs3/zT/hAoAhQhbbbjfsAUzKnznPMVQSIANWYu8apa8AE+EM5nqw/5ikJ3LWCqq2gGVuD30+rOOkziAKqDiAAVUuk+UQA/+/WvBqAUTH7XPPHG6Z1PSbACwsqJ563aF4CAKhhgbcJVFVBQwyYfJIQQNMTAPB7bdXQrZYD1zzDJJ/BHxbOdwSAAIDXF++RoMYE1HN4jQ/hJ1Rz+jy3Es1PAIaXyK9k7ypefZ3lV9X9q7OB1Qh+HpOguQngugBV9a3cjhxXoArgOkqCKq1fcbVsq6FU0txFcxMAWmXrCRq18JR04E3m1GgeQLLU3b/zMPSbDk1PAAAVH4CVhOOUYTs2lJJ6Xt46CKCUhFQSjm3DcRwAwtcZdPNvv5nR/ARggIlBrKd1KRRzMI0Iki0GQCmIOsq7mYFkC+BIB2W7CMuMY95L3kXzE8AFM7vlW4wdu36IwZOHQSTcZeO8gZm+/fVBUErCkTYcKfH+bw+ASLgreoWtHwgKAVwtoJSCEAL73t6O/z34K0TcdQMNYVQWk9D7VydwlEpCOjZK5SIEmTCEqf2A2X2ipkEwCADUkMA0oxBCgFlASl3sSe4qXf41/bxeQ8BAxErogSCe8EMGAAgSAYAqCaSu69PDtKrLxdaaAJcGXvYQvoghFH4FwSIAUCEB3IwgMaGyVlOFArXdvHOhfPtmwSVAwBIjfvmS35mbggBTbIaoyjl4GmAyeNqNEHVgNifYCNEECAkwzxESYJ4jJMA8R0iAeY6rpouf7xUy8wF+GYcaYJ5DEAkmEnK2byTErYUQQgkhWDCromVZ+dm+oRC3BqQ7TmCakUyxmHNEPN6StaxIzp03L1gzHYeYMSKRSEYIKyMGB/+vkEi0jhGRZOaQAHMfRASOx5Mf5/OXs+LAgVcyra2tI0KYE+4OYRwwd8HMTEKIfCq1cOjQod9kBAC7peW2oXg8cd5d+DgkwNwFMzOi0cRYMpkaGhk5XBAAYBjio9bWBb9jZre4IsRchVIKqVTbqZaW2Bl4wypGRgaGbr+9+wQR6ZrpEHMSbgTA7e2d74+NXT4HAAJgeuutHR/39HQficcTp10zEKw5z0PUA1ZKUTQaH+7uXvqbnTt/eB4ARDr9IgFQhmEc6+joPaSUDM3AHAQRsVIK7e2dhy2r5SgAJ51OC2/tRe7t3RBft+6+P9mz59UXlJIduGpwfohmhFIKiUSi3N6+OHvq1MmFlmXxFOG859hf2bhx29+cOfPh9wcG9mfgFtJzOp0W584dKCQSLQd6evr2Oo4DolldjilEnWBWMAxTxeNxxx0reVWjJSKWUlJn55K32to69g8M7M+k02kBVOtpSUcAS2JPPfXFb+zd+9pflcvFZUSkEDqFTQtXrXMikZBLliy9fPz4scWJRMJxHMckIq8MXgEQQojhz3/+i387OLjv3wYGBrLuKSqDq5noRQLOFXK5/J5Vq9ZtV0qWXV8g1ARNBiklHMdBuVymxYs7hxOJlkw2m413dHSNRCLRXLlchuPY8MJ6x3HkPffcv10ptWtgYCADpCvjZ3ytu1+l02nx5ps/GuzuvuO13t5lO2zbFq4WCNEkYGa0td1WXLx4ca69vT2vlJNauXL10Oc+t/HEggW32ZZlWZ2dnbn29sW5aDRatm1bdHYueXPJkuWvvfrqD05oE9FfkWlNWXh/fz8zMxHRvq985dudExOXuycmxj9jmqZkZuPWP26IqRCPx+2WlqStlES5XLJisSjfeefyS+++e/jOZDJlG4aQhmHIbDbbHo8nj3/mM5v+Y+/enTuJSNGkEG8qL58A8Nq1n1vc13ffV/fu3fHNUqmw0jCMkARNAsdxKhNmdHR0jaRSLdIwjESxWLpy8eKFznw+H2dmxGKJ0w899Pi/jIyc/fF7770xjClWNZ7KwWMAdPTor8ey2cs/e/TRp/4xGk2ccBxphOagOWBZFiKRCMfjcVUsFlIXL17sMAyTh4eHl8RiMds0TSSTyZNbt37pH3K53Cta+DzlktbTefgMpMXOna8MnTt36pcbN277firV9o7j2MLVICERZhFeuKeUEpnMRJKIlBDCkdIxx8fHWxOJ5G8efHDb9y5fvvSLPXtePg2kxXRLa3xCiNevgLQ4cODVoVOnBl/evPnx73Z39213HLvEzJ5zGEYIswwhBBMJpZSKSek43d1LX9u8+YnvXrp0/if79r1ySsf7/dM22Doyfd4J2pPPPPMHW4aGTm0bGDj6RLGYv8s0TRCRcuPNMF9wa8E6D8ACYLS0tJzq6bnrf5YvX7lj585Xd1++fPJKVXbTo95Ub8V+PPbYn66JxczNAwNHHxkePrPJcewOIYQ7YUNl4VwvxRzixqEypJd0k4dSCoZhXOzo6N1/991r34xGad/27T84Am2ip7T5k9GIkNxsIfGiRYtS27Z9Y82lS1ceOH36g43nz4/8XqmU72OGIYSoTthA2lfgcF7WmaASsTFDeDOeeEU7sVjszOLF3e/19a3cv2jR7Qf273/z+JkzR8bdDGBdwgdm1EqramXhwrtaH37491eUy86a0dGzay9eHL13YuLy8mKx2KGUTNYzhVuIa4OIIISRi0Zj51Op2061t3e+39XVezQSaTl+6NDugTNnjozrPa+t8q8690zvKZ1OU39/5WLm1q3PdyxY0N5r27w0l7vSNTFxuTefzy8ql4utjlNKKaXCHEJDEDISiWQjkehEIpH8uLV1wXAqlRqKRBJnx8eHh15//eVRADYApNNp0d/fP6PZPa7XTrtEeEn5r93b2xtfterJVHt7LFkoOKlkstUyDINs277Oy80fCCG4WMw5QqhMuWxnDhw4mB0ZOVwzfuN6BO/h/wGG2A0pn7171gAAAABJRU5ErkJggg==" alt="Auto Everything Flow">
-
                 <div class="logo-text">
-
                     <h1>Auto Everything Flow</h1>
-
                     <p>v6.0</p>
-
                 </div>
-
             </div>
-
             <div class="lang-switcher">
-
                 <button class="lang-btn active" onclick="switchLanguage('en')">English</button>
-
                 <button class="lang-btn" onclick="switchLanguage('tr')">Turkce</button>
-
             </div>
-
         </div>
-
-
 
         <!-- Content -->
-
         <div class="content">
-
             <!-- ENGLISH VERSION -->
-
             <div id="en-content">
-
                 <!-- 1. Overview -->
-
                 <div class="section">
-
                     <h2>Overview</h2>
-
                     <p>Auto Everything Flow is a Chrome extension designed to enhance your experience with Google's Gemini AI (available through Google Labs). The extension provides features for prompt generation and image downloading, offering a seamless workflow for users working with Gemini AI.</p>
-
                 </div>
-
-
 
                 <!-- 2. Data Collected -->
-
                 <div class="section">
-
                     <h2>Data Collected</h2>
-
                     <div class="callout">
-
                         <strong>Important:</strong> This extension does NOT send personal data to its own servers. All data is either stored locally in your browser or synced through Google's infrastructure.
-
                     </div>
-
                     <h3>Chrome Local Storage</h3>
-
                     <ul>
-
                         <li>Prompt lists and custom prompts you create</li>
-
                         <li>Character names and configurations</li>
-
                         <li>Settings (language preference, speed settings, operation mode)</li>
-
                         <li>Download statistics and history</li>
-
                         <li>Session statistics</li>
-
                         <li>Subscription status (Pro/Free)</li>
-
                         <li>Supabase authentication session token</li>
-
                     </ul>
-
                     <h3>Chrome Sync Storage</h3>
-
                     <ul>
-
                         <li>Daily usage counters (generation and download limits)</li>
-
                         <li>These are synced via your Google account for cross-device consistency</li>
-
                     </ul>
-
                 </div>
-
-
 
                 <!-- 3. Authentication -->
-
                 <div class="section">
-
                     <h2>Authentication & User Accounts</h2>
-
                     <p>Auto Everything Flow uses Supabase for secure user authentication. You have two authentication options:</p>
-
                     <h3>Google OAuth</h3>
-
                     <ul>
-
                         <li>You can sign in using your Google account</li>
-
                         <li>Authentication is handled through Supabase, a third-party auth service</li>
-
                         <li>Google provides basic profile information (email address) which is stored on Supabase servers</li>
-
                         <li>Your Google password is never shared with the extension</li>
-
                     </ul>
-
                     <h3>Email One-Time Password (OTP)</h3>
-
                     <ul>
-
                         <li>You can sign in using your email address</li>
-
                         <li>Your email address is sent to Supabase to deliver a one-time verification code</li>
-
                         <li>The email address is stored on Supabase servers</li>
-
                     </ul>
-
                     <h3>Session Management</h3>
-
                     <ul>
-
                         <li>Authentication session tokens are stored locally in Chrome's storage</li>
-
                         <li>These tokens are used to verify your subscription status and daily limits</li>
-
                     </ul>
-
                     <p style="margin-top: 15px;"><strong>For more information about how Supabase handles your data:</strong> <a href="https://supabase.com/privacy" target="_blank">Supabase Privacy Policy</a></p>
-
                 </div>
-
-
 
                 <!-- 4. Data Sharing -->
-
                 <div class="section">
-
                     <h2>Data Sharing</h2>
-
                     <p>Auto Everything Flow does not share, sell, rent, or trade your personal information with anyone. Your data remains private:</p>
-
                     <ul>
-
                         <li>Local storage data stays on your device and is not transferred to our servers</li>
-
                         <li>Sync storage is managed exclusively by Google through Chrome's sync infrastructure</li>
-
                         <li>Authentication data is handled only by Supabase</li>
-
                     </ul>
-
                 </div>
-
-
 
                 <!-- 5. External Services -->
-
                 <div class="section">
-
                     <h2>External Services</h2>
-
                     <p>The extension relies on the following third-party services:</p>
-
                     <h3>Supabase</h3>
-
                     <ul>
-
                         <li>Handles user authentication (Google OAuth and Email OTP)</li>
-
                         <li>Verifies daily usage limits through Edge Functions</li>
-
                         <li>Checks Pro subscription status</li>
-
                     </ul>
-
                     <h3>Lemon Squeezy</h3>
-
                     <ul>
-
                         <li>Handles Pro subscription purchases and license verification</li>
-
                         <li>Only your subscription token is verified, not sent in full</li>
-
                     </ul>
-
                     <h3>Google</h3>
-
                     <ul>
-
                         <li>Manages Chrome sync storage for cross-device consistency</li>
-
                         <li>Provides OAuth authentication service</li>
-
                     </ul>
-
                 </div>
-
-
 
                 <!-- 6. Permissions -->
-
                 <div class="section">
-
                     <h2>Extension Permissions</h2>
-
                     <p>Auto Everything Flow requests the following permissions to function properly:</p>
-
                     <ul>
-
                         <li><strong>activeTab & scripting:</strong> Allows content scripts to run on Google's Gemini AI website to enable extension features</li>
-
                         <li><strong>storage:</strong> Saves your settings, prompts, and preferences locally</li>
-
                         <li><strong>downloads:</strong> Enables downloading of generated images</li>
-
                         <li><strong>notifications:</strong> Shows notifications when downloads complete</li>
-
                         <li><strong>alarms:</strong> Runs background service operations</li>
-
                         <li><strong>sidePanel & tabs:</strong> Manages the side panel UI and access to the Gemini AI tab</li>
-
                         <li><strong>identity:</strong> Enables Google OAuth sign-in functionality</li>
-
                     </ul>
-
                 </div>
-
-
 
                 <!-- 7. Data Security -->
-
                 <div class="section">
-
                     <h2>Data Security</h2>
-
                     <p>Your data security is a top priority:</p>
-
                     <ul>
-
                         <li><strong>Local data:</strong> Stored securely via Chrome's APIs on your device</li>
-
                         <li><strong>Sync data:</strong> Protected by Google's secure infrastructure</li>
-
                         <li><strong>Authentication:</strong> Handled through Supabase's secure infrastructure with industry-standard encryption</li>
-
                         <li><strong>No custom servers:</strong> We do not maintain our own servers that store user data</li>
-
                     </ul>
-
                 </div>
-
-
 
                 <!-- 8. User Rights -->
-
                 <div class="section">
-
                     <h2>Your Rights & Data Removal</h2>
-
                     <ul>
-
                         <li><strong>Uninstall extension:</strong> Completely removes all local data stored by the extension</li>
-
                         <li><strong>Google sync data:</strong> May persist in your Google account briefly; you can clear this in your Google Account settings</li>
-
                         <li><strong>Supabase account data:</strong> Can be requested for deletion by contacting us</li>
-
                         <li><strong>Reset from settings:</strong> You can reset all extension data from the extension settings panel at any time</li>
-
                     </ul>
-
                 </div>
-
-
 
                 <!-- 9. Children's Privacy -->
-
                 <div class="section">
-
                     <h2>Children's Privacy</h2>
-
                     <p>Auto Everything Flow is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that we have collected information from a child under 13, we will take steps to delete such information and terminate the child's account.</p>
-
                 </div>
-
-
 
                 <!-- 10. Changes to Policy -->
-
                 <div class="section">
-
                     <h2>Changes to This Privacy Policy</h2>
-
                     <p>We may update this privacy policy from time to time. If we make significant changes, we will notify you through an extension update or message. Your continued use of the extension following any changes constitutes your acceptance of the updated policy.</p>
-
                 </div>
-
-
 
                 <!-- 11. Contact -->
-
                 <div class="section">
-
                     <h2>Contact Us</h2>
-
                     <p>If you have any questions about this privacy policy or our privacy practices, please contact us at:</p>
-
                     <p><strong>Email:</strong> <a href="mailto:autoeverythingflow@gmail.com">autoeverythingflow@gmail.com</a></p>
-
                 </div>
-
             </div>
-
-
 
             <!-- TURKISH VERSION -->
-
             <div id="tr-content" class="hidden">
-
                 <!-- 1. Genel Bakis -->
-
                 <div class="section">
-
                     <h2>Genel Bakis</h2>
-
                     <p>Auto Everything Flow, Google'in Gemini AI (Google Labs uzerinden) deneyiminizi gelistirmek icin tasarlanmis bir Chrome uzantisidir. Uzanti, istem uretimi ve resim indirme icin ozellikler saglar ve Gemini AI ile calisan kullanici icin sorunsuz bir is akisi sunar.</p>
-
                 </div>
-
-
 
                 <!-- 2. Toplanan Veriler -->
-
                 <div class="section">
-
                     <h2>Toplanan Veriler</h2>
-
                     <div class="callout">
-
                         <strong>Onemli:</strong> Bu uzanti kisisel verileri kendi sunucularina gondermez. Tum veriler ya tarayicinizda yerel olarak depolanir ya da Google'in altyapisi uzerinden senkronize edilir.
-
                     </div>
-
                     <h3>Chrome Yerel Depolama</h3>
-
                     <ul>
-
                         <li>Olusturdugunuz istem listeleri ve ozel istemler</li>
-
                         <li>Karakter adlari ve yapilandi</li>
-
                         <li>Ayarlar (dil tercihi, hiz ayarlari, islem modu)</li>
-
                         <li>Indirme istatistikleri ve gecmisi</li>
-
                         <li>Oturum istatistikleri</li>
-
                         <li>Abonelik durumu (Pro/Ucretsiz)</li>
-
                         <li>Supabase kimlik dogrulama oturum tokeni</li>
-
                     </ul>
-
                     <h3>Chrome Senkronizasyon Depolama</h3>
-
                     <ul>
-
                         <li>Gunluk kullanim sayaclari (olusturma ve indirme sinirlari)</li>
-
                         <li>Bunlar cihazlar arasinda tutarlilik icin Google hesabiniz uzerinden senkronize edilir</li>
-
                     </ul>
-
                 </div>
-
-
 
                 <!-- 3. Kimlik Dogrulama -->
-
                 <div class="section">
-
                     <h2>Kimlik Dogrulama & Kullanici Hesaplari</h2>
-
                     <p>Auto Everything Flow, guvenli kullanici kimlik dogrulamasi icin Supabase kullanir. Iki kimlik dogrulama seceneginiz vardir:</p>
-
                     <h3>Google OAuth</h3>
-
                     <ul>
-
                         <li>Google hesabinizi kullanarak giris yapabilirsiniz</li>
-
                         <li>Kimlik dogrulama, ucuncu taraf bir hizmet olan Supabase araciligiyla islenır</li>
-
                         <li>Google temel profil bilgisini (e-posta adresi) saglar ve bu, Supabase sunuculari uzerinde depolanir</li>
-
                         <li>Google sifreniz uzantiya asla paylasılmaz</li>
-
                     </ul>
-
                     <h3>E-posta Bir Kez Sifre (OTP)</h3>
-
                     <ul>
-
                         <li>E-posta adresinizi kullanarak giris yapabilirsiniz</li>
-
                         <li>E-posta adresiniz, bir kez kullanilmasi gereken dogrulama kodunu teslimat icin Supabase'e gonderilir</li>
-
                         <li>E-posta adresi Supabase sunuculari uzerinde depolanir</li>
-
                     </ul>
-
                     <h3>Oturum Yonetimi</h3>
-
                     <ul>
-
                         <li>Kimlik dogrulama oturum tokenleri Chrome depolamada yerel olarak depolanir</li>
-
                         <li>Bu tokenleri abonelik durumunuzu ve gunluk sinirlari dogrulama icin kullanilir</li>
-
                     </ul>
-
                     <p style="margin-top: 15px;"><strong>Supabase'in verileri nasil islendigine iliskin daha fazla bilgi icin:</strong> <a href="https://supabase.com/privacy" target="_blank">Supabase Gizlilik Politikasi</a></p>
-
                 </div>
-
-
 
                 <!-- 4. Veri Paylasimi -->
-
                 <div class="section">
-
                     <h2>Veri Paylasimi</h2>
-
                     <p>Auto Everything Flow kisisel bilgilerinizi kimse ile paylasmaz, satmaz, kiralamaz veya ticaret yapilmaz. Verileriniz gizli kalir:</p>
-
                     <ul>
-
                         <li>Yerel depolama verileri cihazinizda kalir ve sunuculara aktarilmaz</li>
-
                         <li>Senkronizasyon depolama, yalnizca Chrome senkronizasyon altyapisi araciligiyla Google tarafindan yonetilir</li>
-
                         <li>Kimlik dogrulama verileri yalnizca Supabase tarafindan islenır</li>
-
                     </ul>
-
                 </div>
-
-
 
                 <!-- 5. Dis Hizmetler -->
-
                 <div class="section">
-
                     <h2>Dis Hizmetler</h2>
-
                     <p>Uzanti asagidaki ucuncu taraf hizmetlerine dayanir:</p>
-
                     <h3>Supabase</h3>
-
                     <ul>
-
                         <li>Kullanici kimlik dogrulamasi (Google OAuth ve E-posta OTP) islenir</li>
-
                         <li>Gunluk kullanim sinirlari Edge Functions araciligiyla dogrulanır</li>
-
                         <li>Pro abonelik durumunu kontrol eder</li>
-
                     </ul>
-
                     <h3>Lemon Squeezy</h3>
-
                     <ul>
-
                         <li>Pro abonelik satinalmasi ve lisans dogrulamasi islenir</li>
-
                         <li>Yalnizca abonelik tokeni dogru olarak kontrol edilir, tam olarak gonderilmez</li>
-
                     </ul>
-
                     <h3>Google</h3>
-
                     <ul>
-
                         <li>Cihazlar arasinda tutarlilik icin Chrome senkronizasyon depolamasi yonetilir</li>
-
                         <li>OAuth kimlik dogrulama hizmetini saglar</li>
-
                     </ul>
-
                 </div>
-
-
 
                 <!-- 6. Izinler -->
-
                 <div class="section">
-
                     <h2>Uzanti Izinleri</h2>
-
                     <p>Auto Everything Flow, dogru sekilde islemek icin asagidaki izinleri ister:</p>
-
                     <ul>
-
                         <li><strong>activeTab & scripting:</strong> Google'in Gemini AI web sitesinde calisabilmek icin komut dosyalari etkinlestirir</li>
-
                         <li><strong>storage:</strong> Ayarlarınız, istemleriniz ve tercihlerinizi yerel olarak kaydeder</li>
-
                         <li><strong>downloads:</strong> Uretilen resimlerin indirilmesini saglar</li>
-
                         <li><strong>notifications:</strong> Indirmeler tamamlandiginda bildirimler gosterir</li>
-
                         <li><strong>alarms:</strong> Arka plan hizmeti islemlerini calistirir</li>
-
                         <li><strong>sidePanel & tabs:</strong> Yan panel arayuzu ve Gemini AI sekmesine erisimi yonetir</li>
-
                         <li><strong>identity:</strong> Google OAuth giris islevini etkinlestirir</li>
-
                     </ul>
-
                 </div>
-
-
 
                 <!-- 7. Veri Guvenligi -->
-
                 <div class="section">
-
                     <h2>Veri Guvenligi</h2>
-
                     <p>Veri guvenliginiz en onemli onceliktir:</p>
-
                     <ul>
-
                         <li><strong>Yerel veriler:</strong> Chrome API'leri araciligiyla cihazinizda guvenli sekilde depolanir</li>
-
                         <li><strong>Senkronizasyon verileri:</strong> Google'in guvenli altyapisi tarafindan korunur</li>
-
                         <li><strong>Kimlik dogrulama:</strong> Endustri standardi siflemeyle Supabase'in guvenli altyapisi araciligiyla islenir</li>
-
                         <li><strong>Ozel sunucular yok:</strong> Kullanici verilerini depolayan kendi sunuculari bulunmamaktadir</li>
-
                     </ul>
-
                 </div>
-
-
 
                 <!-- 8. Kullanici Haklari -->
-
                 <div class="section">
-
                     <h2>Haklariniz & Veri Silme</h2>
-
                     <ul>
-
                         <li><strong>Uzanti yukseltmesini kaldirin:</strong> Uzanti tarafindan depolanan tum yerel verileri tamamen kaldirır</li>
-
                         <li><strong>Google senkronizasyon verileri:</strong> Google hesabinizda kisaca devam edebilir; bunu Google Hesap ayarlarinizdan temizleyebilirsiniz</li>
-
                         <li><strong>Supabase hesap verileri:</strong> Bize iletisime gecilerek silinmesi istenilebilir</li>
-
                         <li><strong>Ayarlardan sifirlama:</strong> Uzanti ayarlar panelinden herhangi bir zamanda tum uzanti verilerini sifirlar</li>
-
                     </ul>
-
                 </div>
-
-
 
                 <!-- 9. Cocuk Gizliligi -->
-
                 <div class="section">
-
                     <h2>Cocuk Gizliligi</h2>
-
                     <p>Auto Everything Flow, 13 yasından kucuk cocuklara yonelik degildir. 13 yasından kucuk cocuklardan kisisel bilgi topladığımız bilinmiyor. 13 yasından kucuk bir cocuktan bilgi topladığımizin farkina varsa, boyle bilgileri silme ve cocuğun hesabini kapatma adimları atacağız.</p>
-
                 </div>
-
-
 
                 <!-- 10. Politikada Degisiklikler -->
-
                 <div class="section">
-
                     <h2>Bu Gizlilik Politikasindaki Degisiklikler</h2>
-
                     <p>Bu gizlilik politikasini zaman zaman guncelleyebiliriz. Onemli degisiklikler yaparsak, sizi uzanti gunselleme veya mesaj araciligiyla bilgilendirecegiz. Herhangi bir degisiklikten sonra uzantiyi kullanmaya devam etmeniz, guncellenmiş politikayi kabulunuz anlamina gelir.</p>
-
                 </div>
-
-
 
                 <!-- 11. Iletisim -->
-
                 <div class="section">
-
                     <h2>Bizimle Iletisime Gecin</h2>
-
                     <p>Bu gizlilik politikasi hakkinda sorulariniz varsa veya gizlilik uygulamalarimiz hakkinda sorulariniz varsa, lutfen bize ulasin:</p>
-
                     <p><strong>E-posta:</strong> <a href="mailto:autoeverythingflow@gmail.com">autoeverythingflow@gmail.com</a></p>
-
                 </div>
-
             </div>
-
         </div>
-
-
 
         <!-- Footer -->
-
         <div class="footer">
-
             <p>Auto Everything Flow © 2026 — Ahmethan Kayisci</p>
-
             <p style="margin-top:8px;"><a href="index.html">Home</a> &nbsp;|&nbsp; <a href="terms-of-service.html">Terms of Service</a></p>
-
             <div class="update-date">Last updated: March 2026</div>
-
         </div>
-
     </div>
 
-
-
     <script>
-
         function switchLanguage(lang) {
-
             const enContent = document.getElementById('en-content');
-
             const trContent = document.getElementById('tr-content');
-
             const buttons = document.querySelectorAll('.lang-btn');
 
-
-
             if (lang === 'en') {
-
                 enContent.classList.remove('hidden');
-
                 trContent.classList.add('hidden');
-
                 buttons[0].classList.add('active');
-
                 buttons[1].classList.remove('active');
-
                 document.documentElement.lang = 'en';
-
             } else if (lang === 'tr') {
-
                 enContent.classList.add('hidden');
-
                 trContent.classList.remove('hidden');
-
                 buttons[0].classList.remove('active');
-
                 buttons[1].classList.add('active');
-
                 document.documentElement.lang = 'tr';
-
             }
-
         }
-
     </script>
-
 </body>
-
 </html>
-
