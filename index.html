@@ -4,7 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Auto Everything Flow &mdash; Chrome Extension for Google Flow AI</title>
-  <meta name="description" content="Automate image generation and bulk downloading on Google Flow AI. Save hours with batch prompts, smart scanning, and one-click downloads.">
+  <meta name="description" content="Free Chrome Extension to automate image generation, video conversion, and bulk downloading on Google Flow AI. Batch prompts, smart scanning, 30 languages.">
+  <meta property="og:title" content="Auto Everything Flow — Chrome Extension for Google Flow AI">
+  <meta property="og:description" content="Automate image generation, video conversion, and bulk downloading on Google Flow AI. Save hours with batch prompts and smart scanning.">
+  <meta property="og:url" content="https://www.autoeverythingflow.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://www.autoeverythingflow.com/img-main.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Auto Everything Flow — Chrome Extension for Google Flow AI">
+  <meta name="twitter:description" content="Free Chrome Extension for batch image generation, video conversion, and downloads on Google Flow AI.">
+  <meta name="twitter:image" content="https://www.autoeverythingflow.com/img-main.png">
+  <link rel="canonical" href="https://www.autoeverythingflow.com/">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -106,13 +116,12 @@
     .hero-icon {
       width: 90px;
       height: 90px;
-      background: linear-gradient(135deg, #7c3aed, #a78bfa);
+      background: transparent;
       border-radius: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 44px;
-      box-shadow: 0 8px 40px rgba(124,58,237,0.5);
       margin-bottom: 32px;
       animation: float 3s ease-in-out infinite, fadeInUp 1s ease-out;
     }
@@ -741,8 +750,8 @@
   <div class="hero">
     <img src="data:image/png;base64,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" alt="Auto Everything Flow" class="hero-icon" style="object-fit:contain;">
     <h1>Auto Everything Flow</h1>
-    <span class="version-badge">v7.0 &mdash; PRO</span>
-    <p class="subtitle">Automate image generation and bulk downloading on Google Flow AI. Save hours of repetitive work with batch prompts, smart scanning, and one-click downloads.</p>
+    <span class="version-badge">v7.3 &mdash; PRO</span>
+    <p class="subtitle">Automate image generation, image-to-video conversion, and bulk downloading on Google Flow AI. Save hours with batch prompts, smart scanning, and one-click downloads.</p>
     <div class="hero-badges">
       <span class="hero-badge">Chrome Extension</span>
       <span class="hero-badge">Google Flow AI</span>
@@ -750,7 +759,7 @@
       <span class="hero-badge">Batch Automation</span>
     </div>
     <div class="cta-group">
-      <a href="#pricing" class="btn btn-primary">Get Started</a>
+      <a href="https://chromewebstore.google.com/detail/auto-everything-flow-%E2%80%94-au/pklocmmjbncflpkopogbfoimombnkbae" class="btn btn-primary" target="_blank" rel="noopener">Chrome'a Ekle — Free</a>
       <a href="#features" class="btn btn-outline">See Features</a>
     </div>
   </div>
@@ -882,13 +891,13 @@
         <div class="price-amount">$0</div>
         <div class="price-period">forever</div>
         <ul class="price-features">
-          <li>10 daily generations</li>
-          <li>10 daily downloads</li>
+          <li>30 daily generations</li>
+          <li>30 daily downloads</li>
           <li>Batch prompt input</li>
           <li>Smart image scanning</li>
           <li>Folder organization</li>
         </ul>
-        <a href="#" class="price-btn free">Install Free</a>
+        <a href="https://chromewebstore.google.com/detail/auto-everything-flow-%E2%80%94-au/pklocmmjbncflpkopogbfoimombnkbae" class="price-btn free" target="_blank" rel="noopener">Install Free</a>
       </div>
       <div class="price-card pro reveal" style="transition-delay:0.1s">
         <h3>Pro</h3>
@@ -930,7 +939,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>Auto Everything Flow v7.0 &mdash; Built for creators who use Google Flow AI</p>
+    <p>Auto Everything Flow v7.3 &mdash; Built for creators who use Google Flow AI</p>
     <p style="margin-top:8px;">
       <a href="privacy-policy.html">Privacy Policy</a> &nbsp;|&nbsp;
       <a href="terms-of-service.html">Terms of Service</a> &nbsp;|&nbsp;
