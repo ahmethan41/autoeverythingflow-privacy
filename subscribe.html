@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src https://kjgskmhpqqrsejxhbofn.supabase.co; frame-src 'none'; base-uri 'none'; object-src 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="color-scheme" content="dark">
+  <title>Subscribe to Pro | Auto Everything Flow</title>
+  <link rel="canonical" href="https://www.autoeverythingflow.com/subscribe.html">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="stylesheet" href="/checkout.css">
+  <!-- Hosting must also send CSP frame-ancestors 'none', X-Content-Type-Options: nosniff,
+       and Cache-Control: no-store. Keep the apex-to-www redirect query-preserving. -->
+  <script type="module" src="/subscribe.mjs"></script>
+</head>
+<body data-billing-page="subscribe">
+  <header class="site-header">
+    <a class="brand" href="https://www.autoeverythingflow.com/" aria-label="Auto Everything Flow home">
+      <img src="/logo.png" width="36" height="36" alt="">
+      <span>Auto Everything <strong>Flow</strong></span>
+    </a>
+    <a class="header-link" href="/help.html">Need help?</a>
+  </header>
+  <main class="subscribe-layout">
+    <section aria-labelledby="plan-title">
+      <p class="eyebrow">Auto Everything Flow Pro</p>
+      <h1 id="plan-title">More creating.<br>Less clicking.</h1>
+      <p class="intro">Your Flow workflow, without the extension's daily limits.</p>
+      <p class="price"><strong>$8.99</strong><span>USD / month</span></p>
+      <p class="tax-note">Tax may apply. Review the final total in checkout.</p>
+      <ul class="features">
+        <li>Unlimited generations and downloads</li>
+        <li>Batch prompts and smart image scanning</li>
+        <li>Auto character selection</li>
+        <li>Priority support</li>
+      </ul>
+      <p class="small-note">Pro removes extension limits. Google Flow availability and any Google usage limits still apply.</p>
+      <p class="billing-note">Billing starts when you pay, then renews monthly. Cancel future renewals at any time through the Paddle customer portal linked in your subscription emails.</p>
+    </section>
+    <section class="panel" aria-labelledby="signin-title">
+      <p id="step-label" class="step-label">Step 1 of 3 / Your email</p>
+      <h2 id="signin-title" tabindex="-1">Sign in to continue</h2>
+      <p class="form-intro">Use the same email as your extension account so your subscription is linked to the right account.</p>
+      <form id="email-form" method="post" action="/subscribe.html">
+        <fieldset disabled>
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="you@example.com" required aria-describedby="email-note">
+          <p id="email-note" class="input-note">We will email you a sign-in code. Signing in does not start a subscription.</p>
+          <button id="email-submit" class="button" type="submit">Send sign-in code</button>
+        </fieldset>
+      </form>
+      <form id="code-form" method="post" action="/subscribe.html" hidden>
+        <fieldset disabled>
+          <label for="code">Verification code</label>
+          <input id="code" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6,10}" minlength="6" maxlength="10" required aria-describedby="code-note">
+          <p id="code-note" class="input-note">Enter the code from your email. Do not share it with anyone.</p>
+          <button id="code-submit" class="button" type="submit">Verify code</button>
+          <button id="resend-code" class="text-button" type="button">Send a new code</button>
+          <br>
+          <button id="change-email" class="text-button" type="button">Use a different email</button>
+        </fieldset>
+      </form>
+      <form id="purchase-form" method="post" action="/subscribe.html" hidden>
+        <fieldset disabled>
+          <p>Signed in as<br><span id="account-email" class="account-email"></span></p>
+          <p class="form-intro">Continue to Paddle to review and pay $8.99 USD per month, plus any applicable tax. This button does not charge you.</p>
+          <button id="purchase-submit" class="button" type="submit">Continue to secure checkout</button>
+          <button id="sign-out" class="text-button" type="button">Use a different email</button>
+        </fieldset>
+      </form>
+      <p id="subscribe-status" class="status-box" role="status" aria-live="polite" aria-atomic="true">Checking availability. Sign-in remains disabled if checkout is unavailable.</p>
+      <p class="small-note">Your sign-in session is kept only in this page's memory. Reloading or leaving the page clears it.</p>
+      <noscript><p class="notice">JavaScript is required to sign in and open secure checkout. Enable it and reload. No email or payment request is sent without it.</p></noscript>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <span>Auto Everything Flow</span>
+    <nav aria-label="Legal and support">
+      <a href="/terms-of-service.html">Terms</a>
+      <a href="/privacy-policy.html">Privacy</a>
+      <a href="/help.html">Support</a>
+    </nav>
+  </footer>
+</body>
+</html>

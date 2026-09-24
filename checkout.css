@@ -1,0 +1,111 @@
+:root {
+  color-scheme: dark;
+  --background: #0a0a10;
+  --panel: #12121e;
+  --text: #e2e8f0;
+  --muted: #b0b8c8;
+  --accent: #c4b5fd;
+  --border: #343044;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: radial-gradient(ellipse at 25% 5%, #7c3aed22, transparent 55%),
+    radial-gradient(ellipse at 90% 85%, #3b82f60d, transparent 45%), var(--background);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-underline-offset: 4px; }
+a:hover { color: #ede9fe; }
+button, input { font: inherit; }
+button, a, input { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 3px solid #ddd6fe; outline-offset: 4px; }
+.site-header, .site-footer {
+  width: min(1080px, 100%);
+  margin-inline: auto;
+  padding: 26px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.brand { display: flex; gap: 10px; align-items: center; color: var(--text); text-decoration: none; font-size: 14px; line-height: 1.3; }
+.brand img { flex-shrink: 0; object-fit: contain; }
+.brand strong { color: var(--accent); }
+.header-link { font-size: 14px; flex-shrink: 0; }
+main { flex: 1; width: 100%; }
+.subscribe-layout {
+  max-width: 1000px;
+  margin: 44px auto 64px;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  align-items: start;
+  gap: 56px;
+}
+.eyebrow { margin: 0 0 16px; font-size: 12px; font-weight: 750; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+h1, h2, p { margin-top: 0; }
+h1 { margin-bottom: 18px; font-size: clamp(2.1rem, 5vw, 3.4rem); letter-spacing: -0.045em; line-height: 1.08; font-weight: 850; }
+h2 { margin-bottom: 10px; font-size: 1.3rem; line-height: 1.3; letter-spacing: -0.02em; }
+.intro { color: var(--muted); font-size: 17px; }
+.price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; margin: 30px 0 4px; }
+.price strong { color: #fff; font-size: 3rem; font-weight: 800; letter-spacing: -0.05em; line-height: 1.2; }
+.price span { color: var(--muted); font-size: 15px; }
+.tax-note, .small-note { color: var(--muted); font-size: 13px; }
+.features { list-style: none; padding: 0; margin: 28px 0; }
+.features li { padding: 7px 0 7px 20px; position: relative; }
+.features li::before { content: ''; position: absolute; left: 0; top: 18px; width: 6px; height: 6px; border-radius: 50%; background: #a78bfa; }
+.billing-note { font-size: 14px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 20px; }
+.panel { padding: 32px; border: 1px solid var(--border); border-radius: 20px; background: linear-gradient(150deg, #1c1730b3, transparent 48%), var(--panel); box-shadow: 0 24px 80px #0003; }
+.step-label { color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 10px; }
+.form-intro { color: var(--muted); font-size: 14px; margin-bottom: 22px; }
+fieldset { min-width: 0; border: 0; padding: 0; margin: 0; }
+label { display: block; font-size: 14px; font-weight: 650; margin-bottom: 8px; }
+input { display: block; width: 100%; min-width: 0; min-height: 48px; padding: 11px 13px; color: #fff; background: #0d0c15; border: 1px solid #514563; border-radius: 9px; }
+input::placeholder { color: #8f899f; }
+input[readonly] { color: var(--muted); }
+.input-note { color: var(--muted); font-size: 12px; margin: 8px 0 20px; }
+.button { display: inline-flex; justify-content: center; align-items: center; text-align: center; width: 100%; min-height: 48px; padding: 12px 16px; color: #fff; border: 1px solid #9c6df9; border-radius: 10px; background: linear-gradient(135deg, #7c3aed, #6d28d9); font-weight: 700; cursor: pointer; line-height: 1.4; }
+.button:hover:not(:disabled) { background: #7c3aed; }
+.button:disabled, fieldset:disabled .button { cursor: not-allowed; opacity: 0.55; }
+.text-button { display: inline-block; margin: 18px 0 0; padding: 6px 0; color: var(--accent); background: transparent; border: 0; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; font-size: 14px; }
+.text-button:disabled { opacity: 0.5; cursor: not-allowed; }
+.status-box { background: #a78bfa0a; border: 1px solid var(--border); border-left: 3px solid #a78bfa; border-radius: 9px; padding: 16px 18px; margin: 24px 0; font-size: 14px; overflow-wrap: anywhere; }
+.status-box p:last-child { margin-bottom: 0; }
+.status-box h2 { font-size: 17px; }
+.status-box:empty { display: none; }
+.notice { padding: 16px; border: 1px solid #b79465; border-radius: 8px; background: #b7946512; color: #f3d9b3; font-size: 14px; }
+.account-email { overflow-wrap: anywhere; color: var(--text); font-weight: 650; }
+.checkout-layout { max-width: 670px; margin: 48px auto 64px; padding: 0 24px; }
+.checkout-panel h1 { font-size: clamp(2rem, 6vw, 2.8rem); }
+.checkout-panel .small-note { margin: 20px 0; }
+.text-link { display: inline-block; font-size: 14px; padding-block: 5px; }
+.checkout-footnote { text-align: center; color: var(--muted); font-size: 13px; margin-top: 20px; }
+.site-footer { color: var(--muted); font-size: 12px; border-top: 1px solid #ffffff0c; }
+.site-footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
+.site-footer a { color: var(--muted); }
+@media (max-width: 760px) {
+  .subscribe-layout { grid-template-columns: 1fr; max-width: 540px; gap: 28px; margin-top: 20px; }
+  .features { margin-block: 20px; }
+  .checkout-layout { margin-top: 24px; }
+}
+@media (max-width: 380px) {
+  .site-header, .site-footer { padding: 20px 16px; gap: 12px; }
+  .brand { font-size: 12px; gap: 7px; }
+  .brand img { width: 30px; height: 30px; }
+  .header-link { font-size: 12px; }
+  .subscribe-layout, .checkout-layout { padding-inline: 16px; }
+  .panel { padding: 22px 18px; border-radius: 14px; }
+  .site-footer { flex-direction: column; align-items: flex-start; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  main { animation: arrive 0.35s ease-out; }
+  @keyframes arrive { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+}

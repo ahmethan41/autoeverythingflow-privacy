@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cdn.paddle.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cdn.paddle.com; font-src 'self'; connect-src https://api.paddle.com https://checkout-service.paddle.com https://buy.paddle.com https://create-checkout.paddle.com; frame-src https://buy.paddle.com https://checkout.paddle.com; base-uri 'none'; object-src 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="color-scheme" content="dark">
+  <title>Secure Checkout | Auto Everything Flow</title>
+  <link rel="canonical" href="https://www.autoeverythingflow.com/checkout.html">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="stylesheet" href="/checkout.css">
+  <!-- Hosting must also send CSP frame-ancestors 'none', X-Content-Type-Options: nosniff,
+       and Cache-Control: no-store. frame-ancestors cannot be enforced by a meta tag.
+       Inline styles are permitted only here for Paddle's injected overlay styles. -->
+  <script type="module" src="/checkout.mjs"></script>
+</head>
+<body data-billing-page="checkout">
+  <header class="site-header">
+    <a class="brand" href="https://www.autoeverythingflow.com/" aria-label="Auto Everything Flow home">
+      <img src="/logo.png" width="36" height="36" alt="">
+      <span>Auto Everything <strong>Flow</strong></span>
+    </a>
+    <a class="header-link" href="/help.html">Need help?</a>
+  </header>
+  <main class="checkout-layout">
+    <section class="panel checkout-panel" aria-labelledby="checkout-title">
+      <p class="eyebrow">Auto Everything Flow Pro</p>
+      <h1 id="checkout-title">Secure checkout.</h1>
+      <p class="intro">Review your subscription and complete payment with Paddle.</p>
+      <div class="status-box" role="status" aria-live="polite" aria-atomic="true">
+        <h2 id="checkout-status-title">Checkout is not open</h2>
+        <p id="checkout-status">Checking availability. If checkout does not open, return to the subscription page or contact support.</p>
+      </div>
+      <button id="checkout-retry" class="button" type="button" hidden>Reload this checkout</button>
+      <p class="small-note">A browser message is not proof of payment or Pro access. Activation is verified server-side after payment.</p>
+      <a id="subscribe-link" class="text-link" href="/subscribe.html">Return to subscription</a>
+      <noscript><p class="notice">JavaScript is required for secure checkout. Enable it and reload this page. No payment can be completed here without it.</p></noscript>
+    </section>
+    <p class="checkout-footnote">Payment details are collected by Paddle, not by this website.</p>
+  </main>
+  <footer class="site-footer">
+    <span>Auto Everything Flow</span>
+    <nav aria-label="Legal and support">
+      <a href="/terms-of-service.html">Terms</a>
+      <a href="/privacy-policy.html">Privacy</a>
+      <a href="/help.html">Support</a>
+    </nav>
+  </footer>
+</body>
+</html>
