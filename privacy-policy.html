@@ -99,7 +99,7 @@
         <article class="card">
             <section id="en" class="language active">
                 <h1>Privacy Policy</h1>
-                <p class="date">Effective date: August 30, 2026</p>
+                <p class="date">Effective date: September 25, 2026</p>
 
                 <h2>1. Purpose and scope</h2>
                 <p>Auto Everything Flow is a Chrome extension built solely to automate and organize creation workflows on Google Flow AI. It supports bulk prompt submission, character references, scanning, previewing, and downloading images and videos from a Flow gallery. When enabled, the Flow creator Community supports this same narrow purpose through workflow help and experience sharing.</p>
@@ -113,7 +113,8 @@
 
                 <h2>4. Account, quota, and Pro data</h2>
                 <p>Supabase may process an anonymous or signed-in user UUID, installation ID, best-effort device fingerprint, rolling 24-hour usage counters, and quota-window timestamps. If you sign in, your email is used for account verification and matching Pro access.</p>
-                <p>Lemon Squeezy handles checkout and billing. For a signed-in user, the extension may add the email address to the Lemon Squeezy checkout URL to prefill checkout and support subscription matching. The extension does not receive card numbers or full payment details. Supabase may retain subscription ID, product/variant, status, and validity dates to verify Pro access.</p>
+                <p>For new Paddle purchases, sign in on our website using the same email as your extension account. Supabase sends and verifies an email code. The website keeps the access token only in page memory and uses it with our Supabase checkout function. The server binds a checkout transaction to your authenticated user ID before sending you to Paddle; the link contains a transaction ID, not your email or sign-in token. Paddle collects the billing and payment information you enter under its <a href="https://www.paddle.com/legal/privacy">Privacy Policy</a>. The extension and our website do not receive full card details.</p>
+                <p>Supabase retains account-to-checkout bindings, provider customer/subscription/transaction IDs, product/price, subscription state, paid periods and amounts, currency, refund/dispute summaries, and content-free webhook event IDs/hashes to verify access and avoid duplicate processing. Only an opaque checkout reference is sent as Paddle custom data; your account is not linked using an unverified checkout email. Earlier Lemon Squeezy records remain available for legacy access and billing support. Older extension versions may still include an email prefill in a Lemon checkout link.</p>
 
                 <h2>5. Optional Flow Community</h2>
                 <p>The Community is used only when it is enabled, you are signed in, and you choose to join. It may process your public display name and unique handle, public messages, message/presence IDs and timestamps, short-lived online presence leases, reports, block relationships, restrictions, and content-free moderation audit records. Your email is not public. The initial release has no direct messages, file/audio uploads, or message editing. An authorized moderator may inspect only specifically reported content for safety.</p>
@@ -125,7 +126,8 @@
                 <ul>
                     <li><strong>Supabase:</strong> authentication, profiles, quota, Pro status, and Community data when enabled.</li>
                     <li><strong>Google:</strong> OAuth, optional Chrome Sync, and Cloud Translation only on user request.</li>
-                    <li><strong>Lemon Squeezy:</strong> checkout, subscription, and billing processing.</li>
+                    <li><strong>Paddle:</strong> new checkout, subscription, and billing processing as merchant of record.</li>
+                    <li><strong>Lemon Squeezy:</strong> earlier purchases, subscription records, and related billing support.</li>
                 </ul>
                 <p>Only data necessary for the selected function is shared. It is not transferred for advertising, data brokerage, credit assessment, or an unrelated purpose.</p>
 
@@ -137,7 +139,7 @@
                     <li>Content-free safety audit records and inactive restrictions last up to 365 days; active restrictions remain until expiry or revocation.</li>
                     <li>Presence, operational webhook receipts, and cost/quota periods are kept only for the short or bounded periods required by their functions.</li>
                 </ul>
-                <p>“Delete my Community data” removes the Community profile, messages, translations, report/block relationships, and presence. It does not automatically delete the sign-in account, Pro/Lemon subscription, or safety and quota records. A content-free deletion receipt may remain for up to 24 hours. Complete server-account deletion can be requested by email.</p>
+                <p>“Delete my Community data” removes the Community profile, messages, translations, report/block relationships, and presence. It does not automatically delete the sign-in account, cancel a paid subscription with Paddle or Lemon Squeezy, or delete billing, safety and quota records. A content-free deletion receipt may remain for up to 24 hours. Complete server-account deletion can be requested by email. Billing/access records are retained while needed to administer subscriptions, investigate payment issues, and meet applicable recordkeeping obligations; the Community message retention periods do not apply to those records.</p>
 
                 <h2>9. Chrome permissions</h2>
                 <ul>
@@ -161,7 +163,7 @@
 
             <section id="tr" class="language">
                 <h1>Gizlilik Politikası</h1>
-                <p class="date">Yürürlük tarihi: 30 Ağustos 2026</p>
+                <p class="date">Yürürlük tarihi: 25 Eylül 2026</p>
 
                 <h2>1. Amaç ve kapsam</h2>
                 <p>Auto Everything Flow, yalnızca Google Flow AI üzerindeki üretim iş akışlarını otomatikleştirmek ve düzenlemek için geliştirilmiş bir Chrome eklentisidir. Toplu prompt gönderme, karakter referansı, Flow galerisindeki görsel ve videoları tarama, önizleme ve indirme işlevlerini destekler. Etkinleştirildiğinde Flow üreticilerine özel Topluluk da aynı dar amaç kapsamında iş akışı yardımı ve deneyim paylaşımı sunar.</p>
@@ -175,7 +177,8 @@
 
                 <h2>4. Hesap, kota ve Pro verileri</h2>
                 <p>Supabase anonim veya oturum açmış kullanıcı UUID'si, kurulum kimliği, best-effort cihaz parmak izi, rolling 24 saatlik kullanım sayaçları ve kota penceresi zamanlarını işleyebilir. Giriş yaparsanız e-posta adresiniz hesap doğrulama ve Pro erişimini eşleştirme için kullanılır.</p>
-                <p>Ödeme ve faturalandırmayı Lemon Squeezy yönetir. Oturum açmış kullanıcı için eklenti, ödeme sayfasını önceden doldurmak ve abonelik eşleştirmesini desteklemek amacıyla e-posta adresini Lemon Squeezy ödeme URL'sine ekleyebilir. Eklenti kart numaranızı veya tam ödeme bilgilerinizi almaz. Supabase, Pro erişimini doğrulamak için abonelik kimliği, ürün/varyant, durum ve geçerlilik tarihlerini saklayabilir.</p>
+                <p>Yeni Paddle satın alımlarında, web sitemize eklenti hesabınızla aynı e-posta adresini kullanarak giriş yaparsınız. Supabase e-posta kodunu gönderir ve doğrular. Web sitesi erişim belirtecini yalnızca sayfa belleğinde tutar ve Supabase ödeme fonksiyonumuzla kullanır. Sunucu sizi Paddle'a yönlendirmeden önce ödeme işlemini doğrulanmış kullanıcı kimliğinize bağlar; bağlantı e-posta veya oturum belirteci değil, işlem kimliği içerir. Paddle girdiğiniz faturalandırma ve ödeme bilgilerini kendi <a href="https://www.paddle.com/legal/privacy">Gizlilik Politikası</a> kapsamında işler. Eklenti ve web sitemiz tam kart bilgilerini almaz.</p>
+                <p>Supabase erişimi doğrulamak ve aynı olayı tekrar işlememek için hesap-ödeme eşleştirmelerini, sağlayıcı müşteri/abonelik/işlem kimliklerini, ürün/fiyatı, abonelik durumunu, ödenmiş dönem ve tutarları, para birimini, iade/itiraz özetlerini ve içerik taşımayan webhook olay kimlikleri/özetlerini saklar. Paddle ek verisine yalnızca kişisel bilgi içermeyen bir ödeme referansı gönderilir; hesap eşleştirmesi doğrulanmamış ödeme e-postasına dayanmaz. Önceki Lemon Squeezy kayıtları eski erişim ve faturalandırma desteği için korunur. Eski eklenti sürümleri Lemon ödeme bağlantısında e-posta ön doldurması kullanmaya devam edebilir.</p>
 
                 <h2>5. İsteğe bağlı Flow Topluluğu</h2>
                 <p>Topluluk yalnızca etkinleştirildiğinde, giriş yaptığınızda ve katılmayı seçtiğinizde kullanılır. Herkese açık görünen adınız ve benzersiz handle'ınız, mesajlarınız, mesaj/presence kimlikleri ve zamanları, kısa süreli çevrimiçi presence lease kayıtları, raporlar, engel ilişkileri, kısıtlamalar ve içeriksiz moderasyon kayıtları işlenebilir. E-posta adresiniz herkese gösterilmez. İlk sürümde doğrudan mesaj, dosya/ses yükleme veya mesaj düzenleme yoktur. Yetkili moderatör yalnızca özellikle raporlanan içeriği güvenlik amacıyla inceleyebilir.</p>
@@ -187,7 +190,8 @@
                 <ul>
                     <li><strong>Supabase:</strong> kimlik doğrulama, profil, kota, Pro ve etkinse Topluluk verileri.</li>
                     <li><strong>Google:</strong> OAuth, isteğe bağlı Chrome Sync ve yalnızca istek üzerine Cloud Translation.</li>
-                    <li><strong>Lemon Squeezy:</strong> ödeme, abonelik ve faturalandırma.</li>
+                    <li><strong>Paddle:</strong> kayıtlı satıcı olarak yeni ödeme, abonelik ve faturalandırma işlemleri.</li>
+                    <li><strong>Lemon Squeezy:</strong> önceki satın alımlar, abonelik kayıtları ve ilgili faturalandırma desteği.</li>
                 </ul>
                 <p>Yalnızca seçilen işlev için gerekli veri paylaşılır; reklam, veri komisyonculuğu, kredi değerlendirmesi veya ilgisiz amaçlar için aktarılmaz.</p>
 
@@ -199,7 +203,7 @@
                     <li>İçeriksiz güvenlik kayıtları ve pasif kısıtlamalar en fazla 365 gün; aktif kısıtlamalar bitiş veya kaldırılma tarihine kadar tutulur.</li>
                     <li>Presence, operasyonel webhook ve maliyet/kota dönemleri işlev için gerekli kısa veya sınırlı sürelerde tutulur.</li>
                 </ul>
-                <p>“Topluluk verilerimi sil” Topluluk profilini, mesajları, çevirileri, rapor/engel ilişkilerini ve presence kayıtlarını kaldırır. Giriş hesabını, Pro/Lemon aboneliğini veya güvenlik ve kota kayıtlarını otomatik silmez. İçeriksiz silme makbuzu en fazla 24 saat kalabilir. Tam sunucu hesabı silme talebi e-postayla iletilebilir.</p>
+                <p>“Topluluk verilerimi sil” Topluluk profilini, mesajları, çevirileri, rapor/engel ilişkilerini ve presence kayıtlarını kaldırır. Giriş hesabını silmez, Paddle veya Lemon Squeezy ücretli aboneliğini iptal etmez; faturalandırma, güvenlik ve kota kayıtlarını otomatik silmez. İçeriksiz silme makbuzu en fazla 24 saat kalabilir. Tam sunucu hesabı silme talebi e-postayla iletilebilir. Faturalandırma/erişim kayıtları aboneliği yönetmek, ödeme sorunlarını incelemek ve geçerli kayıt tutma yükümlülüklerini karşılamak için gerektiği sürece tutulur; Topluluk mesaj saklama süreleri bu kayıtlara uygulanmaz.</p>
 
                 <h2>9. Chrome izinleri</h2>
                 <ul>

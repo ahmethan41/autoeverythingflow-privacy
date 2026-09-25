@@ -208,7 +208,7 @@ async function startSubscribe() {
       if (data?.result === 'existing_subscription') {
         enabled = false;
         accessToken = '';
-        show('This account already has a subscription. Do not buy another one. Manage it through the Paddle customer portal in your subscription email, or contact support.');
+        show('This account already has Pro access or a subscription. Do not buy another one. Use the billing provider shown on your existing receipt, or contact support if access was granted manually or you need help moving from Lemon Squeezy.');
         return;
       }
       if (data?.result === 'disabled' || data?.result === 'checkout_disabled') {
