@@ -93,6 +93,7 @@ input[readonly] { color: var(--muted); }
 .site-footer a { color: var(--muted); }
 @media (max-width: 760px) {
   .subscribe-layout { grid-template-columns: 1fr; max-width: 540px; gap: 28px; margin-top: 20px; }
+  .signin-panel { order: -1; }
   .features { margin-block: 20px; }
   .checkout-layout { margin-top: 24px; }
 }

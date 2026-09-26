@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; script-src-attr 'none'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src https://kjgskmhpqqrsejxhbofn.supabase.co; frame-src 'none'; base-uri 'none'; object-src 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://cdn.paddle.com; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cdn.paddle.com; font-src 'self'; connect-src https://kjgskmhpqqrsejxhbofn.supabase.co https://api.paddle.com https://checkout-service.paddle.com https://buy.paddle.com https://create-checkout.paddle.com; frame-src https://buy.paddle.com https://checkout.paddle.com; base-uri 'none'; object-src 'none'; form-action 'none'">
   <meta name="referrer" content="no-referrer">
   <meta name="robots" content="noindex, nofollow">
   <meta name="color-scheme" content="dark">
@@ -11,8 +11,9 @@
   <link rel="canonical" href="https://www.autoeverythingflow.com/subscribe.html">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="stylesheet" href="/checkout.css">
-  <!-- Hosting must also send CSP frame-ancestors 'none', X-Content-Type-Options: nosniff,
-       and Cache-Control: no-store. Keep the apex-to-www redirect query-preserving. -->
+  <!-- Paddle loads only after server eligibility checks and clearing the Auth token.
+       Inline styles support its overlay, not inline script. Hosting must also send
+       frame-ancestors 'none', nosniff and Cache-Control: no-store. -->
   <script type="module" src="/subscribe.mjs"></script>
 </head>
 <body data-billing-page="subscribe">
@@ -46,15 +47,15 @@
         <p>When eligible, you can start a new monthly Paddle subscription by confirming payment yourself. It starts on that payment date, not automatically on your old Lemon renewal date. Opening this page or signing in does not charge you.</p>
       </details>
     </section>
-    <section class="panel" aria-labelledby="signin-title">
-      <p id="step-label" class="step-label">Step 1 of 3 / Your email</p>
-      <h2 id="signin-title" tabindex="-1">Sign in to continue</h2>
-      <p class="form-intro">Use the same email as your extension account so your subscription is linked to the right account.</p>
+    <section class="panel signin-panel" aria-labelledby="signin-title">
+      <p id="step-label" class="step-label">Your email / Then secure checkout</p>
+      <h2 id="signin-title" tabindex="-1">Start with your email</h2>
+      <p class="form-intro">Pro is $8.99 USD/month. Verify the email you use for the extension, then review and pay in Paddle. Tax may apply.</p>
       <form id="email-form" method="post" action="/subscribe.html">
         <fieldset disabled>
           <label for="email">Email address</label>
           <input id="email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="you@example.com" required aria-describedby="email-note">
-          <p id="email-note" class="input-note">We will email you a sign-in code. Signing in does not start a subscription.</p>
+          <p id="email-note" class="input-note">We will email you a code, then fill this address in Paddle for you. You pay only when you confirm payment there.</p>
           <button id="email-submit" class="button" type="submit">Send sign-in code</button>
         </fieldset>
       </form>
@@ -62,8 +63,8 @@
         <fieldset disabled>
           <label for="code">Verification code</label>
           <input id="code" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6,10}" minlength="6" maxlength="10" required aria-describedby="code-note">
-          <p id="code-note" class="input-note">Enter the code from your email. Do not share it with anyone.</p>
-          <button id="code-submit" class="button" type="submit">Verify code</button>
+          <p id="code-note" class="input-note">Enter the code to open checkout. No payment is made by verifying your email.</p>
+          <button id="code-submit" class="button" type="submit">Verify and open checkout</button>
           <button id="resend-code" class="text-button" type="button">Send a new code</button>
           <br>
           <button id="change-email" class="text-button" type="button">Use a different email</button>
@@ -72,13 +73,13 @@
       <form id="purchase-form" method="post" action="/subscribe.html" hidden>
         <fieldset disabled>
           <p>Signed in as<br><span id="account-email" class="account-email"></span></p>
-          <p class="form-intro">Continue to Paddle to review and pay $8.99 USD per month, plus any applicable tax. This button does not charge you.</p>
-          <button id="purchase-submit" class="button" type="submit">Continue to secure checkout</button>
+          <p class="form-intro">Review the total and any discount in Paddle. Reopening this checkout never creates a second purchase. Only confirm payment once.</p>
+          <button id="purchase-submit" class="button" type="submit">Reopen secure checkout</button>
           <button id="sign-out" class="text-button" type="button">Use a different email</button>
         </fieldset>
       </form>
       <p id="subscribe-status" class="status-box" role="status" aria-live="polite" aria-atomic="true">Checking availability. Sign-in remains disabled if checkout is unavailable.</p>
-      <p class="small-note">Your sign-in session is kept only in this page's memory. Reloading or leaving the page clears it.</p>
+      <p class="small-note">Keep this page open to return to the same checkout without another code. Sign-in details are not saved in browser storage and are cleared before Paddle loads.</p>
       <noscript><p class="notice">JavaScript is required to sign in and open secure checkout. Enable it and reload. No email or payment request is sent without it.</p></noscript>
     </section>
   </main>

@@ -1,4 +1,5 @@
 import { canonicalPageURL, validatedCheckoutURL } from './checkout.mjs';
+import { createPaddleOverlay } from './paddle-overlay.mjs';
 
 const PRODUCTION_SUPABASE_URL = 'https://kjgskmhpqqrsejxhbofn.supabase.co';
 
@@ -47,13 +48,16 @@ async function startSubscribe() {
   let controller;
   let nextEmailAt = 0;
   let resendTimer;
+  let paddle;
+  let readyCheckout;
+  let checkoutRetry = true;
 
   function show(message) { status.textContent = message; }
 
   function render() {
     for (const [name, form] of Object.entries(forms)) {
       form.hidden = name !== stage;
-      form.querySelector('fieldset').disabled = !enabled || busy || name !== stage;
+      form.querySelector('fieldset').disabled = !enabled || busy || name !== stage || (name === 'purchase' && !checkoutRetry);
       form.setAttribute('aria-busy', String(busy && name === stage));
     }
     emailInput.readOnly = Boolean(requestKey);
@@ -61,12 +65,13 @@ async function startSubscribe() {
     signOutButton.hidden = Boolean(requestKey);
     resendButton.disabled = busy || Date.now() < nextEmailAt;
     emailButton.textContent = busy && stage === 'email' ? 'Sending code...' : 'Send sign-in code';
-    codeButton.textContent = busy && stage === 'code' ? 'Please wait...' : 'Verify code';
-    purchaseButton.textContent = busy && stage === 'purchase' ? 'Preparing checkout...' : requestKey ? 'Retry the same checkout request' : 'Continue to secure checkout';
+    codeButton.textContent = busy && stage === 'code' ? 'Please wait...' : 'Verify and open checkout';
+    purchaseButton.textContent = busy && stage === 'purchase' ? 'Opening checkout...' : readyCheckout ? 'Reopen secure checkout' : 'Retry the same checkout request';
+    purchaseButton.hidden = !checkoutRetry;
     const steps = {
-      email: ['Step 1 of 3 / Your email', 'Sign in to continue'],
-      code: ['Step 2 of 3 / Verify email', 'Check your inbox'],
-      purchase: ['Step 3 of 3 / Review and continue', 'Ready when you are'],
+      email: ['Your email / Then secure checkout', 'Start with your email'],
+      code: ['Verify email / Then secure checkout', 'Check your inbox'],
+      purchase: ['Secure checkout', 'Review and pay in Paddle'],
     };
     [stepLabel.textContent, title.textContent] = steps[stage];
   }
@@ -74,7 +79,8 @@ async function startSubscribe() {
   function setStage(next) {
     stage = next;
     render();
-    title.focus();
+    if (next === 'code') codeInput.focus();
+    else title.focus();
   }
 
   async function post(path, body, authenticated = false) {
@@ -171,15 +177,24 @@ async function startSubscribe() {
       const { response, data } = await post('/auth/v1/verify', { email, token, type: 'email' });
       if (!isCurrent()) return;
       if (!response.ok || typeof data?.access_token !== 'string' || !data.access_token
-          || !Number.isFinite(data.expires_in) || data.expires_in <= 30) {
+          || !Number.isFinite(data.expires_in) || data.expires_in <= 30
+          || typeof data.user?.email !== 'string' || data.user.email.toLowerCase() !== email.toLowerCase()
+          || data.user.is_anonymous !== false || !data.user.email_confirmed_at) {
         show(response.status === 429 ? 'Too many attempts. Wait a minute before trying again.' : 'The code could not be verified. Check the code or request a new one after one minute.');
         return;
       }
       accessToken = data.access_token;
       expiresAt = Date.now() + (data.expires_in - 30) * 1000;
+      email = data.user.email;
+      // Do not retain Auth response tokens while the provider SDK is loaded.
+      delete data.access_token;
+      delete data.refresh_token;
       accountEmail.textContent = email;
       setStage('purchase');
-      show('Email verified. No payment has been made. Continue only when you are ready to review the checkout.');
+      try { await prepareCheckout(isCurrent); }
+      catch {
+        if (isCurrent()) show('Your email is verified, but checkout could not be confirmed. Retry this same request below; do not start a separate purchase.');
+      }
     }, 'Sign-in could not be verified. Please try again or request a new code.');
   });
 
@@ -191,58 +206,67 @@ async function startSubscribe() {
     show('Your sign-in expired. Sign in again with the same email. Any existing checkout request will be reused, not replaced.');
   }
 
-  forms.purchase.addEventListener('submit', event => {
-    event.preventDefault();
-    if (stage !== 'purchase' || busy || !enabled) return;
+  async function prepareCheckout(isCurrent) {
+    if (readyCheckout) {
+      await paddle.open(readyCheckout, email);
+      return;
+    }
     if (!accessToken || Date.now() >= expiresAt) {
       requireSignIn();
       return;
     }
-    void run(async isCurrent => {
-      // Retain the key after every ambiguous response, timeout, and sign-in refresh.
-      requestKey ||= crypto.randomUUID();
-      render();
-      show('Preparing your checkout. Keep this page open; this action does not charge you.');
-      const { response, data } = await post('/functions/v1/paddle-checkout', { request_key: requestKey }, true);
-      if (!isCurrent()) return;
-      if (['legacy_period_remaining', 'legacy_subscription_review'].includes(data?.result)) {
-        enabled = false;
-        accessToken = '';
-        const until = typeof data.eligibleAt === 'string' ? Date.parse(data.eligibleAt) : NaN;
-        show(data.result === 'legacy_period_remaining' && Number.isFinite(until)
-          ? `Your previous subscription has a recorded end date of ${new Date(until).toUTCString()}. A new purchase is blocked until then to help avoid overlapping payments. Return after that time using the same email. If access or dates look wrong, contact autoeverythingflow@gmail.com. No new payment was made.`
-          : 'Your previous subscription needs a billing review before another purchase. No new checkout was opened or payment made. Contact autoeverythingflow@gmail.com using your account email so we can check the old billing status. Do not use another email to bypass this check.');
-        return;
-      }
-      if (data?.result === 'existing_subscription') {
-        enabled = false;
-        accessToken = '';
-        show('This account already has Pro access or a subscription. Do not buy another one. Use the billing provider shown on your existing receipt, or contact support if access was granted manually or you need help moving from Lemon Squeezy.');
-        return;
-      }
-      if (data?.result === 'disabled' || data?.result === 'checkout_disabled') {
-        enabled = false;
-        accessToken = '';
-        show('New checkouts are currently disabled. Please try again later or contact support. This page cannot confirm payment or activation.');
-        return;
-      }
-      if (response.status === 401) {
-        requireSignIn();
-        return;
-      }
-      const checkoutURL = response.ok ? validatedCheckoutURL(data) : null;
-      if (!checkoutURL) {
-        show('Checkout could not be confirmed. Keep this page open and do not start a separate purchase. Wait, then retry this same request or contact support.');
-        return;
-      }
+    // Retain the key after every ambiguous response, timeout, and sign-in refresh.
+    requestKey ||= crypto.randomUUID();
+    render();
+    show('Preparing your checkout. Keep this page open; this action does not charge you.');
+    const { response, data } = await post('/functions/v1/paddle-checkout', { request_key: requestKey }, true);
+    if (!isCurrent()) return;
+    if (['legacy_period_remaining', 'legacy_subscription_review'].includes(data?.result)) {
       enabled = false;
       accessToken = '';
-      show('Opening Paddle so you can review and confirm payment.');
-      window.location.assign(checkoutURL);
-    }, 'We could not confirm the checkout request. Keep this page open. Retry here to reuse the same request, or contact support; do not start a separate purchase.');
+      const until = typeof data.eligibleAt === 'string' ? Date.parse(data.eligibleAt) : NaN;
+      show(data.result === 'legacy_period_remaining' && Number.isFinite(until)
+        ? `Your previous subscription has a recorded end date of ${new Date(until).toUTCString()}. A new purchase is blocked until then to help avoid overlapping payments. Return after that time using the same email. If access or dates look wrong, contact autoeverythingflow@gmail.com. No new payment was made.`
+        : 'Your previous subscription needs a billing review before another purchase. No new checkout was opened or payment made. Contact autoeverythingflow@gmail.com using your account email so we can check the old billing status. Do not use another email to bypass this check.');
+      return;
+    }
+    if (data?.result === 'existing_subscription') {
+      enabled = false;
+      accessToken = '';
+      show('This account already has Pro access or a subscription. Do not buy another one. Use the billing provider shown on your existing receipt, or contact support if access was granted manually or you need help moving from Lemon Squeezy.');
+      return;
+    }
+    if (data?.result === 'disabled' || data?.result === 'checkout_disabled') {
+      enabled = false;
+      accessToken = '';
+      show('New checkouts are currently disabled. Please try again later or contact support. This page cannot confirm payment or activation.');
+      return;
+    }
+    if (response.status === 401) {
+      requireSignIn();
+      return;
+    }
+    const checkoutURL = response.ok ? validatedCheckoutURL(data) : null;
+    if (!checkoutURL) {
+      show('Checkout could not be confirmed. Keep this page open and do not start a separate purchase. Wait, then retry this same request or contact support.');
+      return;
+    }
+    readyCheckout = data;
+    // Clear the Auth credential BEFORE any third-party SDK runs. Reopening
+    // this already-bound checkout does not require an Auth token or a new POST.
+    accessToken = '';
+    expiresAt = 0;
+    await paddle.open(readyCheckout, email);
+  }
+
+  forms.purchase.addEventListener('submit', event => {
+    event.preventDefault();
+    if (stage !== 'purchase' || busy || !enabled || !checkoutRetry) return;
+    void run(prepareCheckout, 'We could not confirm the checkout request. Keep this page open. Retry here to reuse the same request, or contact support; do not start a separate purchase.');
   });
 
   function clearSession() {
+    paddle?.reset();
     generation += 1;
     controller?.abort();
     clearTimeout(resendTimer);
@@ -250,6 +274,8 @@ async function startSubscribe() {
     accessToken = '';
     expiresAt = 0;
     requestKey = '';
+    readyCheckout = undefined;
+    checkoutRetry = true;
     enabled = configured;
     busy = false;
     emailInput.value = '';
@@ -269,7 +295,9 @@ async function startSubscribe() {
   }
   window.addEventListener('pagehide', clearSession);
   window.addEventListener('pageshow', event => {
-    if (event.persisted) show('For your privacy, your session was cleared when you left. Sign in again if needed. If you submitted payment, check your receipt or contact support before starting another checkout.');
+    // A restored page may still have the provider SDK in its JS realm. Reload
+    // before another sign-in rather than handling fresh Auth credentials there.
+    if (event.persisted) window.location.reload();
   });
 
   const canonical = canonicalPageURL(window.location.href, 'subscribe');
@@ -288,12 +316,19 @@ async function startSubscribe() {
     return;
   }
   if (config.CHECKOUT_ENABLED !== true || config.SUPABASE_URL !== PRODUCTION_SUPABASE_URL
-      || !isPublicSupabaseKey(config.SUPABASE_PUBLIC_KEY)) {
+      || !isPublicSupabaseKey(config.SUPABASE_PUBLIC_KEY)
+      || typeof config.PADDLE_CLIENT_TOKEN !== 'string' || !/^live_[a-zA-Z0-9_-]+$/.test(config.PADDLE_CLIENT_TOKEN)) {
     show('New subscriptions are currently unavailable. Please try again later or contact support. No sign-in or payment request was sent.');
     return;
   }
   configured = true;
   enabled = true;
+  paddle = createPaddleOverlay({ token: config.PADDLE_CLIENT_TOKEN, onState(state) {
+    checkoutRetry = state.canRetry;
+    show(state.message);
+    if (['processing', 'completed'].includes(state.phase)) enabled = false;
+    render();
+  } });
   render();
   show('Sign in first, then review your checkout. You will only pay when you confirm payment in Paddle.');
 }
