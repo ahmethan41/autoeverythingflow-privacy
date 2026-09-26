@@ -135,7 +135,7 @@ async function startCheckout() {
         token: config.PADDLE_CLIENT_TOKEN,
         eventCallback: onCheckoutEvent,
         checkout: {
-          settings: { displayMode: 'overlay', allowLogout: false, allowDiscountRemoval: false, showAddDiscounts: false },
+          settings: { displayMode: 'overlay', allowLogout: false, allowDiscountRemoval: true, showAddDiscounts: true },
         },
       });
     } catch {
