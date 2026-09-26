@@ -205,6 +205,15 @@ async function startSubscribe() {
       show('Preparing your checkout. Keep this page open; this action does not charge you.');
       const { response, data } = await post('/functions/v1/paddle-checkout', { request_key: requestKey }, true);
       if (!isCurrent()) return;
+      if (['legacy_period_remaining', 'legacy_subscription_review'].includes(data?.result)) {
+        enabled = false;
+        accessToken = '';
+        const until = typeof data.eligibleAt === 'string' ? Date.parse(data.eligibleAt) : NaN;
+        show(data.result === 'legacy_period_remaining' && Number.isFinite(until)
+          ? `Your previous subscription has a recorded end date of ${new Date(until).toUTCString()}. A new purchase is blocked until then to help avoid overlapping payments. Return after that time using the same email. If access or dates look wrong, contact autoeverythingflow@gmail.com. No new payment was made.`
+          : 'Your previous subscription needs a billing review before another purchase. No new checkout was opened or payment made. Contact autoeverythingflow@gmail.com using your account email so we can check the old billing status. Do not use another email to bypass this check.');
+        return;
+      }
       if (data?.result === 'existing_subscription') {
         enabled = false;
         accessToken = '';
