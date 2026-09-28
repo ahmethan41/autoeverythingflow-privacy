@@ -99,9 +99,10 @@
         <article class="card">
             <section id="en" class="language active">
                 <h1>Privacy Policy</h1>
-                <p class="date">Effective date: September 25, 2026</p>
+                <p class="date">Last updated: September 28, 2026</p>
 
                 <h2>1. Purpose and scope</h2>
+                <p>This policy covers the extension and our website, including verified sign-in and subscription checkout.</p>
                 <p>Auto Everything Flow is a Chrome extension built solely to automate and organize creation workflows on Google Flow AI. It supports bulk prompt submission, character references, scanning, previewing, and downloading images and videos from a Flow gallery. When enabled, the Flow creator Community supports this same narrow purpose through workflow help and experience sharing.</p>
                 <div class="notice"><p><strong>We do not sell personal data, build advertising profiles, perform credit assessments, or collect general browsing history outside Flow.</strong></p></div>
 
@@ -113,7 +114,7 @@
 
                 <h2>4. Account, quota, and Pro data</h2>
                 <p>Supabase may process an anonymous or signed-in user UUID, installation ID, best-effort device fingerprint, rolling 24-hour usage counters, and quota-window timestamps. If you sign in, your email is used for account verification and matching Pro access.</p>
-                <p>For new Paddle purchases, sign in on our website using the same email as your extension account. Supabase sends and verifies an email code. The website keeps the access token only in page memory and uses it with our Supabase checkout function. The server binds a checkout transaction to your authenticated user ID. We clear the sign-in credential before loading Paddle and pass your verified email to prefill its checkout, so you do not have to enter it again. The same unpaid checkout can be reopened while the page stays open without another code. Nothing is saved in browser storage; separate checkout links contain a transaction ID, not your email or sign-in token. Paddle collects billing and payment information under its <a href="https://www.paddle.com/legal/privacy">Privacy Policy</a>. The extension and our website do not receive full card details.</p>
+                <p>For new Paddle purchases, sign in on our website using the same email as your extension account. Supabase sends and verifies an email code. The website keeps the access token only in page memory and uses it with our Supabase checkout function. The server binds a checkout transaction to your authenticated user ID. We clear the sign-in credential before loading Paddle and pass your verified email to prefill its checkout, so you do not have to enter it again. The same unpaid checkout can be reopened while the page stays open without another code. Our checkout code does not save your sign-in tokens or email in browser storage; this does not describe the extension's separate stored session. Separate checkout links contain a transaction ID, not your email or sign-in token. Paddle collects billing and payment information and may use cookies or similar technologies under its <a href="https://www.paddle.com/legal/privacy">Privacy Policy</a>. The extension and our website do not receive full card details.</p>
                 <p>Supabase retains account-to-checkout bindings, provider customer/subscription/transaction IDs, product/price, subscription state, paid periods and amounts, currency, refund/dispute summaries, and content-free webhook event IDs/hashes to verify access and avoid duplicate processing. Only an opaque checkout reference is sent as Paddle custom data; your account is not linked using an unverified checkout email. Earlier Lemon Squeezy records remain available for legacy access and billing support. Older extension versions may still include an email prefill in a Lemon checkout link.</p>
 
                 <h2>5. Optional Flow Community</h2>
@@ -125,6 +126,8 @@
                 <h2>7. Service providers</h2>
                 <ul>
                     <li><strong>Supabase:</strong> authentication, profiles, quota, Pro status, and Community data when enabled.</li>
+                    <li><strong>Email delivery:</strong> the mail service configured with Supabase delivers sign-in codes to the address you provide.</li>
+                    <li><strong>Vercel and GitHub Pages:</strong> hosting our website and published information pages; these services may process request metadata such as IP address, browser details and requested URL to serve and secure pages.</li>
                     <li><strong>Google:</strong> OAuth, optional Chrome Sync, and Cloud Translation only on user request.</li>
                     <li><strong>Paddle:</strong> new checkout, subscription, and billing processing as merchant of record.</li>
                     <li><strong>Lemon Squeezy:</strong> earlier purchases, subscription records, and related billing support.</li>
@@ -150,7 +153,7 @@
                     <li><strong>sidePanel:</strong> show the extension interface.</li>
                     <li><strong>identity:</strong> start Google sign-in.</li>
                 </ul>
-                <p>Host access is limited to Google Flow and the fixed production Supabase domain. The extension does <strong>not</strong> request the debugger permission.</p>
+                <p>The manifest requests host access for <code>labs.google</code>, <code>*.labs.google.com</code>, <code>flow.google.com</code> and <code>*.supabase.co</code>. The Supabase permission is a wildcard; the released client uses our fixed production project for account and service requests. Flow automation is scoped to supported Flow pages. The extension does <strong>not</strong> request the debugger permission.</p>
 
                 <h2>10. Security and Limited Use</h2>
                 <p>Server traffic uses HTTPS/WSS; server secrets are not shipped in the extension; authorization and row-level controls restrict database access. We limit data access, volume, and retention to what each feature requires.</p>
@@ -163,9 +166,10 @@
 
             <section id="tr" class="language">
                 <h1>Gizlilik Politikası</h1>
-                <p class="date">Yürürlük tarihi: 25 Eylül 2026</p>
+                <p class="date">Son güncelleme: 28 Eylül 2026</p>
 
                 <h2>1. Amaç ve kapsam</h2>
+                <p>Bu politika eklentiyi ve doğrulanmış giriş ile abonelik ödeme akışı dahil web sitemizi kapsar.</p>
                 <p>Auto Everything Flow, yalnızca Google Flow AI üzerindeki üretim iş akışlarını otomatikleştirmek ve düzenlemek için geliştirilmiş bir Chrome eklentisidir. Toplu prompt gönderme, karakter referansı, Flow galerisindeki görsel ve videoları tarama, önizleme ve indirme işlevlerini destekler. Etkinleştirildiğinde Flow üreticilerine özel Topluluk da aynı dar amaç kapsamında iş akışı yardımı ve deneyim paylaşımı sunar.</p>
                 <div class="notice"><p><strong>Kişisel verileri satmayız, reklam profili oluşturmayız, kredi değerlendirmesi yapmayız ve Flow dışındaki genel tarama geçmişini toplamayız.</strong></p></div>
 
@@ -177,7 +181,7 @@
 
                 <h2>4. Hesap, kota ve Pro verileri</h2>
                 <p>Supabase anonim veya oturum açmış kullanıcı UUID'si, kurulum kimliği, best-effort cihaz parmak izi, rolling 24 saatlik kullanım sayaçları ve kota penceresi zamanlarını işleyebilir. Giriş yaparsanız e-posta adresiniz hesap doğrulama ve Pro erişimini eşleştirme için kullanılır.</p>
-                <p>Yeni Paddle satın alımlarında, web sitemize eklenti hesabınızla aynı e-posta adresini kullanarak giriş yaparsınız. Supabase e-posta kodunu gönderir ve doğrular. Web sitesi erişim belirtecini yalnızca sayfa belleğinde tutar ve Supabase ödeme fonksiyonumuzla kullanır. Sunucu ödeme işlemini doğrulanmış kullanıcı kimliğinize bağlar. Paddle yüklenmeden önce giriş belirteci temizlenir; doğrulanmış e-postanız tekrar yazmanıza gerek kalmaması için Paddle ödeme ekranına aktarılır. Sayfa açık kaldığı sürece aynı ödenmemiş işlem yeniden kod istemeden açılabilir. Tarayıcı depolamasına kayıt yapılmaz; ayrı ödeme bağlantıları e-posta veya oturum belirteci değil, işlem kimliği içerir. Paddle faturalandırma ve ödeme bilgilerini kendi <a href="https://www.paddle.com/legal/privacy">Gizlilik Politikası</a> kapsamında işler. Eklenti ve web sitemiz tam kart bilgilerini almaz.</p>
+                <p>Yeni Paddle satın alımlarında, web sitemize eklenti hesabınızla aynı e-posta adresini kullanarak giriş yaparsınız. Supabase e-posta kodunu gönderir ve doğrular. Web sitesi erişim belirtecini yalnızca sayfa belleğinde tutar ve Supabase ödeme fonksiyonumuzla kullanır. Sunucu ödeme işlemini doğrulanmış kullanıcı kimliğinize bağlar. Paddle yüklenmeden önce giriş belirteci temizlenir; doğrulanmış e-postanız tekrar yazmanıza gerek kalmaması için Paddle ödeme ekranına aktarılır. Sayfa açık kaldığı sürece aynı ödenmemiş işlem yeniden kod istemeden açılabilir. Ödeme sayfamızın kodu giriş belirteçlerinizi veya e-postanızı tarayıcı depolamasına kaydetmez; bu açıklama eklentinin ayrı olarak saklanan oturumunu kapsamaz. Ayrı ödeme bağlantıları e-posta veya oturum belirteci değil, işlem kimliği içerir. Paddle faturalandırma ve ödeme bilgilerini işler; kendi <a href="https://www.paddle.com/legal/privacy">Gizlilik Politikası</a> kapsamında çerez veya benzeri teknolojiler kullanabilir. Eklenti ve web sitemiz tam kart bilgilerini almaz.</p>
                 <p>Supabase erişimi doğrulamak ve aynı olayı tekrar işlememek için hesap-ödeme eşleştirmelerini, sağlayıcı müşteri/abonelik/işlem kimliklerini, ürün/fiyatı, abonelik durumunu, ödenmiş dönem ve tutarları, para birimini, iade/itiraz özetlerini ve içerik taşımayan webhook olay kimlikleri/özetlerini saklar. Paddle ek verisine yalnızca kişisel bilgi içermeyen bir ödeme referansı gönderilir; hesap eşleştirmesi doğrulanmamış ödeme e-postasına dayanmaz. Önceki Lemon Squeezy kayıtları eski erişim ve faturalandırma desteği için korunur. Eski eklenti sürümleri Lemon ödeme bağlantısında e-posta ön doldurması kullanmaya devam edebilir.</p>
 
                 <h2>5. İsteğe bağlı Flow Topluluğu</h2>
@@ -189,6 +193,8 @@
                 <h2>7. Hizmet sağlayıcılar</h2>
                 <ul>
                     <li><strong>Supabase:</strong> kimlik doğrulama, profil, kota, Pro ve etkinse Topluluk verileri.</li>
+                    <li><strong>E-posta teslimatı:</strong> Supabase ile yapılandırılmış e-posta hizmeti, giriş kodlarını verdiğiniz adrese ulaştırır.</li>
+                    <li><strong>Vercel ve GitHub Pages:</strong> web sitemizi ve yayımlanan bilgi sayfalarını barındırır; sayfaları sunmak ve korumak için IP adresi, tarayıcı bilgileri ve istenen URL gibi istek meta verilerini işleyebilir.</li>
                     <li><strong>Google:</strong> OAuth, isteğe bağlı Chrome Sync ve yalnızca istek üzerine Cloud Translation.</li>
                     <li><strong>Paddle:</strong> kayıtlı satıcı olarak yeni ödeme, abonelik ve faturalandırma işlemleri.</li>
                     <li><strong>Lemon Squeezy:</strong> önceki satın alımlar, abonelik kayıtları ve ilgili faturalandırma desteği.</li>
@@ -214,7 +220,7 @@
                     <li><strong>sidePanel:</strong> eklenti arayüzünü göstermek.</li>
                     <li><strong>identity:</strong> Google girişini başlatmak.</li>
                 </ul>
-                <p>Host erişimi Google Flow ve sabit üretim Supabase alan adıyla sınırlıdır. Eklenti <strong>debugger izni istemez.</strong></p>
+                <p>Manifest, <code>labs.google</code>, <code>*.labs.google.com</code>, <code>flow.google.com</code> ve <code>*.supabase.co</code> için host erişimi ister. Supabase izni joker karakterlidir; yayımlanan istemci hesap ve hizmet isteklerinde sabit üretim projemizi kullanır. Flow otomasyonu desteklenen Flow sayfalarıyla sınırlıdır. Eklenti <strong>debugger izni istemez.</strong></p>
 
                 <h2>10. Güvenlik ve Limited Use</h2>
                 <p>Sunucu trafiği HTTPS/WSS kullanır; sunucu sırları eklentiye konulmaz; yetkilendirme ve satır düzeyi kurallar veritabanı erişimini sınırlar. Veri erişimi, miktarı ve saklaması her özelliğin gerektirdiğiyle sınırlandırılır.</p>
